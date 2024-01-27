@@ -72,7 +72,7 @@ The rendering of the project containing:
 
 ## Built With
 
-* [Intellij] - The IDE used
+* [Intellij IDEA 2023.3.3] - The IDE used
 
 
 ## 4. Auteurs
