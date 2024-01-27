@@ -4,8 +4,8 @@ public class Store {
     private int id;
     private String name;
 
-    public Store(String name) {
-        this.id = id;
+    public Store(int StoreId, String name) {
+        this.id = StoreId;
         this.name = name;
     }
 

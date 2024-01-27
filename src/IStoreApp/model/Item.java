@@ -6,8 +6,8 @@ public class Item {
     private double price;
     private int quantity;
 
-    public Item(String name, double price, int quantity) {
-        this.id = id;
+    public Item(int itemId, String name, double price, int quantity) {
+        this.id = itemId;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
