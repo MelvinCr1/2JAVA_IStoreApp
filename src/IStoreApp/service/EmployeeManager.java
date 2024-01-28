@@ -27,7 +27,7 @@ public class EmployeeManager {
         System.out.println("Employé créé avec succès !");
     }
 
-    public static Employee getEmployeeById(int employeeId){
+    public static Employee getEmployeeById(int employeeId) throws SQLException {
         return IStoreApp.dataAccess.EmployeeAccess.getEmployeeById(employeeId);
     }
 
