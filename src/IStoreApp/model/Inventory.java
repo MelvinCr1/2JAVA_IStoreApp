@@ -6,6 +6,7 @@ import java.util.List;
 public class Inventory {
     private int storeId;
     private List<Item> items;
+    private int id;
 
     public Inventory(int storeId) {
         this.storeId = storeId;
@@ -26,5 +27,13 @@ public class Inventory {
 
     public void removeItem(Item item){
         items.remove(item);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
