@@ -11,7 +11,16 @@ public class DatabaseManager {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            // Tentative de connexion à la base de données
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Connexion à la base de données réussie !");
+        } catch (SQLException e) {
+            // Gestion des exceptions en cas d'échec de la connexion
+            System.err.println("Erreur lors de la connexion à la base de données : " + e.getMessage());
+        }
+        return connection;
     }
 }
