@@ -22,33 +22,36 @@ public class EmployeeAccess {
         }
     }
 
-    public static Employee getEmployeeById(int employeeId) {
-        return null;
-    }
-
-    /*
     // Méthode pour récupérer un employé par son identifiant
-    public Employee getEmployeeById(int employeeId) throws SQLException {
+    public static Employee getEmployeeById(int employeeId) throws SQLException {
         String query = "SELECT * FROM employees WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, employeeId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    return new Employee();
+                    //return new Employee();
                 }
             }
         }
         return null;
     }
-    */
 
     // Méthode pour mettre à jour les informations d'un employé dans la base de données
     public void updateEmployee(Employee employee) throws SQLException {
-        // Implémentez la logique pour mettre à jour un employé dans la base de données
+        String query = "UPDATE employees SET pseudo = ?WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, employee.getPseudo());
+            statement.setInt(3, employee.getId());
+            statement.executeUpdate();
+        }
     }
 
     // Méthode pour supprimer un employé de la base de données
     public void deleteEmployee(Employee employee) throws SQLException {
-        // Implémentez la logique pour supprimer un employé de la base de données
+        String query = "DELETE FROM employees WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, employee.getId());
+            statement.executeUpdate();
+        }
     }
 }
