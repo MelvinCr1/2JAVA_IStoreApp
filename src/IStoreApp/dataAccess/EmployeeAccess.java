@@ -7,19 +7,23 @@ import java.sql.SQLException;
 import IStoreApp.model.Employee;
 
 public class EmployeeAccess {
-    private Connection connection;
+    private static Connection connection;
 
-    public EmployeeAccess(Connection connection) {
-        this.connection = connection;
+    public EmployeeAccess() throws SQLException {
+        this.connection = DatabaseManager.getConnection();
     }
 
     // Méthode pour créer un nouvel employé dans la base de données
-    public void createEmployee(Employee employee) throws SQLException {
+    public static void createEmployee(Employee employee) throws SQLException {
         String query = "INSERT INTO employees (id) VALUES (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, employee.getId());
             statement.executeUpdate();
         }
+    }
+
+    public static Employee getEmployeeById(int employeeId) {
+        return null;
     }
 
     /*

@@ -9,8 +9,8 @@ import IStoreApp.model.Admin;
 public class AdminAccess {
     private Connection connection;
 
-    public AdminAccess(Connection connection) {
-        this.connection = connection;
+    public AdminAccess() throws SQLException {
+        this.connection = DatabaseManager.getConnection();
     }
 
     // Méthode pour créer un nouvel administrateur dans la base de données

@@ -1,5 +1,6 @@
 package IStoreApp.ui;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import IStoreApp.model.User;
 import IStoreApp.service.UserManager;
@@ -7,7 +8,7 @@ import IStoreApp.service.UserManager;
 public class UserUI {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void createUser(){
+    public static void createUser() throws SQLException {
         System.out.println("Création d'un nouvel utilisateur :");
         System.out.print("Entrez l'email de l'utilisateur : ");
         String email = scanner.nextLine();
@@ -23,7 +24,7 @@ public class UserUI {
         UserManager.createUser(newUser);
     }
 
-    public static void displayUserDetails(){
+    public static void displayUserDetails() throws SQLException {
         System.out.println("Affichage des détails d'un utilisateur :");
         System.out.println("Entrez l'email de l'utilisateur");
         String email = scanner.nextLine();
@@ -41,7 +42,7 @@ public class UserUI {
         }
     }
 
-    public static void updateUser(){
+    public static void updateUser() throws SQLException {
         System.out.println("Mise à jour des informations d'un utilisateur :");
         System.out.println("Entrez l'email de l'utilisateur à mettre à jour : ");
         String email = scanner.nextLine();
@@ -66,7 +67,7 @@ public class UserUI {
         }
     }
 
-    public static void deleteUser(){
+    public static void deleteUser() throws SQLException {
         System.out.println("Suppression d'un utilisateur :");
         System.out.print("Entrez l'email de l'utilisateur à supprimer : ");
         String email = scanner.nextLine();
@@ -82,7 +83,7 @@ public class UserUI {
         }
     }
 
-    public static void mainMenu(){
+    public static void mainMenu() throws SQLException {
         boolean exit = false;
         while(!exit){
             System.out.println("=== Menu Principal ===");

@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import IStoreApp.model.Item;
 
 public class ItemAccess {
-    private Connection connection;
+    private static Connection connection;
 
-    public ItemAccess(Connection connection) {
-        this.connection = connection;
+    public ItemAccess() throws SQLException {
+        this.connection = DatabaseManager.getConnection();
     }
 
     // Méthode pour créer un nouvel article dans la base de données
-    public void createItem(Item item) throws SQLException {
+    public static void createItem(Item item) throws SQLException {
         String query = "INSERT INTO items (name, price, quantity) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, item.getName());
@@ -25,7 +25,7 @@ public class ItemAccess {
     }
 
     // Méthode pour mettre à jour les informations d'un article dans la base de données
-    public void updateItem(Item item) throws SQLException {
+    public static void updateItem(Item item) throws SQLException {
         String query = "UPDATE items SET name = ?, price = ?, quantity = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, item.getName());
@@ -37,7 +37,7 @@ public class ItemAccess {
     }
 
     // Méthode pour supprimer un article de la base de données
-    public void deleteItem(Item item) throws SQLException {
+    public static void deleteItem(Item item) throws SQLException {
         String query = "DELETE FROM items WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, item.getId());

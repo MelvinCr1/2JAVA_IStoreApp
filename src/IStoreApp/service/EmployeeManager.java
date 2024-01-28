@@ -3,11 +3,21 @@ package IStoreApp.service;
 import IStoreApp.model.Employee;
 import IStoreApp.dataAccess.EmployeeAccess;
 
+import java.sql.SQLException;
+
 public class EmployeeManager {
-    private static final EmployeeAccess employeeAccess = new EmployeeAccess();
+    private static final EmployeeAccess employeeAccess;
+
+    static {
+        try {
+            employeeAccess = new EmployeeAccess();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     // Méthode pour créer un nouvel employé
-    public static void createEmployee(Employee employee){
+    public static void createEmployee(Employee employee) throws SQLException {
         // Vérification si l'employé existe déja
         if (getEmployeeById(employee.getId()) != null){
             System.out.println("Erreur : Un employé avec cet ID existe déja.");
@@ -22,7 +32,7 @@ public class EmployeeManager {
     }
 
     // Méthode pour mettre à jours un employé
-    public static void updateEmployee(Employee employee){
+    public static void updateEmployee(Employee employee) throws SQLException {
         Employee existingEmployee = getEmployeeById(employee.getId());
         if (existingEmployee == null){
             System.out.println("Erreur : Cet employé n'existe pas.");
@@ -33,7 +43,7 @@ public class EmployeeManager {
     }
 
     // Méthode pour supprimer un employé
-    public static void deleteEmployee(Employee employee){
+    public static void deleteEmployee(Employee employee) throws SQLException {
         Employee existingEmployee = getEmployeeById(employee.getId());
         if (existingEmployee == null){
             System.out.println("Erreur : Cet employé n'existe pas");

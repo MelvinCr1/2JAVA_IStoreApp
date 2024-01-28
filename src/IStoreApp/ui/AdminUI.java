@@ -1,125 +1,111 @@
 package IStoreApp.ui;
 
-import java.util.Scanner;
-import IStoreApp.model.Admin;
-import IStoreApp.service.AdminManager;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class AdminUI {
-    private static final Scanner scanner = new Scanner(System.in);
+public class AdminUI extends JFrame {
+    private static final JTextField emailField = new JTextField(20);
+    private static final JTextField pseudoField = new JTextField(20);
+    private static final JPasswordField passwordField = new JPasswordField(20);
 
-    public static void createAdmin() {
-        System.out.println("Création d'un nouvel administrateur :");
-        System.out.print("Entrez l'email de l'administrateur : ");
-        String email = scanner.nextLine();
-        System.out.print("Entrez le pseudo de l'administrateur : ");
-        String pseudo = scanner.nextLine();
-        System.out.print("Entrez le mot de passe de l'administrateur : ");
-        String password = scanner.nextLine();
+    public AdminUI() {
+        setTitle("Gestion des administrateurs");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
 
-        // Créer un nouvel objet Admin avec les informations saisies
-        Admin newAdmin = new Admin(email, pseudo, password);
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(5, 1, 10, 10)); // 5 lignes, 1 colonne, espacement de 10 pixels
 
-        // Appeler la méthode de gestion pour créer l'administrateur
-        AdminManager.createAdmin(newAdmin);
-    }
+        // Saisie email de l'administrateur
+        panel.add(new JLabel("Email de l'administrateur :"));
+        panel.add(emailField);
 
-    public static void displayAdminDetails() {
-        System.out.println("Affichage des détails d'un administrateur :");
-        System.out.print("Entrez l'email de l'administrateur : ");
-        String email = scanner.nextLine();
+        // Saisie pseudo de l'administrateur
+        panel.add(new JLabel("Pseudo de l'administrateur :"));
+        panel.add(pseudoField);
 
-        // Appeler la méthode de gestion pour récupérer l'administrateur par email
-        Admin admin = AdminManager.getAdminByEmail(email);
+        // Saisie mot de passe de l'administrateur
+        panel.add(new JLabel("Mot de passe de l'administrateur :"));
+        panel.add(passwordField);
 
-        if (admin != null) {
-            // Afficher les détails de l'administrateur
-            System.out.println("Détails de l'administrateur :");
-            System.out.println("Email : " + admin.getEmail());
-            System.out.println("Pseudo : " + admin.getPseudo());
-            // Ne pas afficher le mot de passe pour des raisons de sécurité
-        } else {
-            System.out.println("Aucun administrateur trouvé avec cet email.");
-        }
-    }
-
-    public static void updateAdmin() {
-        System.out.println("Mise à jour des informations d'un administrateur :");
-        System.out.print("Entrez l'email de l'administrateur à mettre à jour : ");
-        String email = scanner.nextLine();
-
-        // Appeler la méthode de gestion pour récupérer l'administrateur par email
-        Admin admin = AdminManager.getAdminByEmail(email);
-
-        if (admin != null) {
-            // Demander les nouvelles informations à l'utilisateur
-            System.out.print("Entrez le nouveau pseudo de l'administrateur : ");
-            String newPseudo = scanner.nextLine();
-            System.out.print("Entrez le nouveau mot de passe de l'administrateur : ");
-            String newPassword = scanner.nextLine();
-
-            // Mettre à jour les informations de l'administrateur
-            admin.setPseudo(newPseudo);
-            admin.setPassword(newPassword);
-
-            // Appeler la méthode de gestion pour mettre à jour l'administrateur
-            AdminManager.updateAdmin(admin);
-            System.out.println("Administrateur mis à jour avec succès !");
-        } else {
-            System.out.println("Aucun administrateur trouvé avec cet email.");
-        }
-    }
-
-    public static void deleteAdmin() {
-        System.out.println("Suppression d'un administrateur :");
-        System.out.print("Entrez l'email de l'administrateur à supprimer : ");
-        String email = scanner.nextLine();
-
-        // Appeler la méthode de gestion pour récupérer l'administrateur par email
-        Admin admin = AdminManager.getAdminByEmail(email);
-
-        if (admin != null) {
-            // Appeler la méthode de gestion pour supprimer l'administrateur
-            AdminManager.deleteAdmin(admin);
-            System.out.println("Administrateur supprimé avec succès !");
-        } else {
-            System.out.println("Aucun administrateur trouvé avec cet email.");
-        }
-    }
-
-    public static void mainMenuAdmin() {
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("=== Menu Principal Administrateur ===");
-            System.out.println("1. Créer un nouvel administrateur");
-            System.out.println("2. Afficher les détails d'un administrateur");
-            System.out.println("3. Mettre à jour un administrateur");
-            System.out.println("4. Supprimer un administrateur");
-            System.out.println("5. Quitter");
-
-            System.out.print("Entrez votre choix : ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Pour consommer la nouvelle ligne
-
-            switch (choice) {
-                case 1:
-                    createAdmin();
-                    break;
-                case 2:
-                    displayAdminDetails();
-                    break;
-                case 3:
-                    updateAdmin();
-                    break;
-                case 4:
-                    deleteAdmin();
-                    break;
-                case 5:
-                    exit = true;
-                    System.out.println("Au revoir !");
-                    break;
-                default:
-                    System.out.println("Choix invalide. Veuillez choisir une option valide.");
+        // Bouton pour créer un nouvel administrateur
+        JButton createAdminButton = new JButton("Créer un nouvel administrateur");
+        createAdminButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String email = emailField.getText();
+                String pseudo = pseudoField.getText();
+                String password = new String(passwordField.getPassword());
+                // IStoreApp.service.AdminManager.createAdmin(new Admin(email, pseudo, password));
+                JOptionPane.showMessageDialog(AdminUI.this, "Pas encore développé");
             }
-        }
+        });
+        panel.add(createAdminButton);
+
+        // Bouton pour afficher les détails d'un administrateur
+        JButton displayAdminButton = new JButton("Afficher les détails d'un administrateur");
+        displayAdminButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String email = emailField.getText();
+                // Admin admin = AdminManager.getAdminByEmail(email);
+                JOptionPane.showMessageDialog(AdminUI.this, "Pas encore développé");
+            }
+        });
+        panel.add(displayAdminButton);
+
+        // Bouton pour mettre à jour un administrateur
+        JButton updateAdminButton = new JButton("Mettre à jour un administrateur");
+        updateAdminButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String email = emailField.getText();
+                String newPseudo = pseudoField.getText();
+                String newPassword = new String(passwordField.getPassword());
+                // Admin admin = AdminManager.getAdminByEmail(email);
+                // admin.setPseudo(newPseudo);
+                // admin.setPassword(newPassword);
+                // AdminManager.updateAdmin(admin);
+                JOptionPane.showMessageDialog(AdminUI.this, "Pas encore développé");
+            }
+        });
+        panel.add(updateAdminButton);
+
+        // Bouton pour supprimer un administrateur
+        JButton deleteAdminButton = new JButton("Supprimer un administrateur");
+        deleteAdminButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String email = emailField.getText();
+                // Admin admin = AdminManager.getAdminByEmail(email);
+                // AdminManager.deleteAdmin(admin);
+                JOptionPane.showMessageDialog(AdminUI.this, "Pas encore développé");
+            }
+        });
+        panel.add(deleteAdminButton);
+
+        // Bouton pour quitter l'application
+        JButton exitButton = new JButton("Quitter");
+        exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Au revoir !");
+                System.exit(0);
+            }
+        });
+        panel.add(exitButton);
+
+        // Ajout du panneau au cadre principal
+        add(panel);
+
+        // Centrer la fenêtre
+        setLocationRelativeTo(null);
+    }
+
+    public static void main(/*String[] args*/) {
+        // Création et affichage de l'interface utilisateur
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                AdminUI adminUI = new AdminUI();
+                adminUI.setVisible(true);
+            }
+        });
     }
 }

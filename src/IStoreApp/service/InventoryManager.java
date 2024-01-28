@@ -4,13 +4,22 @@ import IStoreApp.model.Inventory;
 import IStoreApp.dataAccess.InventoryAccess;
 import IStoreApp.model.Item;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class InventoryManager {
-    private static final InventoryAccess inventoryAccess = new InventoryAccess();
+    private static final InventoryAccess inventoryAccess;
+
+    static {
+        try {
+            inventoryAccess = new InventoryAccess();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     // Méthode pour créer un nouvel inventaire
-    public static void createInventory(Inventory inventory){
+    public static void createInventory(Inventory inventory) throws SQLException {
         // Vérification si l'inventaire existe déja pour ce magasin
         if (getInventoryByStoreId(inventory.getStoreId()) != null){
             System.out.println("Erreur : Un inventaire pour ce magasin existe déja.");
@@ -21,12 +30,12 @@ public class InventoryManager {
     }
 
     // Méthode pour récupérer un inventaire par son ID de magasin
-    public static Inventory getInventoryByStoreId(int storeId){
+    public static Inventory getInventoryByStoreId(int storeId) throws SQLException {
         return inventoryAccess.getInventoryByStoreId(storeId);
     }
 
     // Méthode pour mettre à jour un inventaire existant
-    public static void updateInventory(Inventory inventory){
+    public static void updateInventory(Inventory inventory) throws SQLException {
         // Vérification si l'inventaire existe
         Inventory existingInventory = getInventoryByStoreId(inventory.getStoreId());
         if (existingInventory == null){
@@ -38,7 +47,7 @@ public class InventoryManager {
     }
 
     // Méthode pour supprimer un inventaire
-    public static void deleteInventory(Inventory inventory){
+    public static void deleteInventory(Inventory inventory) throws SQLException {
         // Vérification si l'inventaire existe
         Inventory existingInventory = getInventoryByStoreId(inventory.getStoreId());
         if (existingInventory == null) {

@@ -3,11 +3,21 @@ package IStoreApp.service;
 import IStoreApp.model.Store;
 import IStoreApp.dataAccess.StoreAccess;
 
+import java.sql.SQLException;
+
 public class StoreManager {
-    private static final StoreAccess storeAccess = new StoreAccess();
+    private static final StoreAccess storeAccess;
+
+    static {
+        try {
+            storeAccess = new StoreAccess();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     // Méthode pour créer un nouveau magasin
-    public static void createStore(Store store){
+    public static void createStore(Store store) throws SQLException {
         // Vérification si le magasin existe déja
         if (getStoreById(store.getId()) != null) {
             System.out.println("Erreur : Un magasin avec cet ID existe déja.");
@@ -19,12 +29,12 @@ public class StoreManager {
     }
 
     // Méthode pour récupérer un magasin par son ID
-    public static Store getStoreById(int storeId){
+    public static Store getStoreById(int storeId) throws SQLException {
         return storeAccess.getStoreById(storeId);
     }
 
     // Méthode pour mettre à jour un magasin existant
-    public static void updateStore(Store store){
+    public static void updateStore(Store store) throws SQLException {
         // Vérification si le magasin existe
         Store existingStore = getStoreById(store.getId());
         if (existingStore == null) {
@@ -36,7 +46,7 @@ public class StoreManager {
     }
 
     // Méthode pour supprimer un magasin
-    public static void deleteStore(Store store){
+    public static void deleteStore(Store store) throws SQLException {
         // Vérification si le magasin existe
         Store existingStore = getStoreById(store.getId());
         if (existingStore == null) {

@@ -1,5 +1,102 @@
 package IStoreApp.ui;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class StoreUI extends JFrame {
+    public StoreUI() {
+        setTitle("Store Management System");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+
+        // Création d'un panneau pour contenir les boutons
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(4, 1, 10, 10)); // 4 lignes, 1 colonne, espacement de 10 pixels
+
+        // Bouton pour créer un nouveau magasin
+        JButton createButton = new JButton("Créer un nouveau magasin");
+        createButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Appeler la méthode pour créer un magasin
+                createStore();
+            }
+        });
+        panel.add(createButton);
+
+        // Bouton pour afficher les détails d'un magasin
+        JButton displayButton = new JButton("Afficher les détails d'un magasin");
+        displayButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Appeler la méthode pour afficher les détails d'un magasin
+                displayStoreDetails();
+            }
+        });
+        panel.add(displayButton);
+
+        // Bouton pour mettre à jour un magasin
+        JButton updateButton = new JButton("Mettre à jour un magasin");
+        updateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Appeler la méthode pour mettre à jour un magasin
+                updateStore();
+            }
+        });
+        panel.add(updateButton);
+
+        // Bouton pour supprimer un magasin
+        JButton deleteButton = new JButton("Supprimer un magasin");
+        deleteButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Appeler la méthode pour supprimer un magasin
+                deleteStore();
+            }
+        });
+        panel.add(deleteButton);
+
+        // Ajout du panneau au cadre principal
+        add(panel);
+
+        // Centrer la fenêtre
+        setLocationRelativeTo(null);
+    }
+
+    // Méthodes pour gérer les actions du magasin
+    private void createStore() {
+        JOptionPane.showMessageDialog(this, "Fonctionnalité non implémentée : Créer un magasin");
+    }
+
+    private void displayStoreDetails() {
+        JOptionPane.showMessageDialog(this, "Fonctionnalité non implémentée : Afficher les détails d'un magasin");
+    }
+
+    private void updateStore() {
+        JOptionPane.showMessageDialog(this, "Fonctionnalité non implémentée : Mettre à jour un magasin");
+    }
+
+    private void deleteStore() {
+        JOptionPane.showMessageDialog(this, "Fonctionnalité non implémentée : Supprimer un magasin");
+    }
+
+    public static void main(/*String[] args*/) {
+        // Création et affichage de l'interface utilisateur
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                StoreUI storeUI = new StoreUI();
+                storeUI.setVisible(true);
+            }
+        });
+    }
+}
+
+
+/* VERSION CONSOLE
+
+
+
+package IStoreApp.ui;
+
 import java.util.Scanner;
 import IStoreApp.model.Store;
 import IStoreApp.service.StoreManager;
@@ -116,3 +213,5 @@ public class StoreUI {
         }
     }
 }
+
+ */

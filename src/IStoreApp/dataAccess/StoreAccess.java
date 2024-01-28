@@ -9,8 +9,8 @@ import IStoreApp.model.Store;
 public class StoreAccess {
     private Connection connection;
 
-    public StoreAccess(Connection connection) {
-        this.connection = connection;
+    public StoreAccess() throws SQLException {
+        this.connection = DatabaseManager.getConnection();
     }
 
     // Méthode pour créer un nouveau magasin dans la base de données
@@ -48,7 +48,8 @@ public class StoreAccess {
             statement.setInt(1, storeId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    return new Store(storeId, resultSet.getString("name"));
+                    int StoreId = 0;
+                    return new Store(resultSet.getString("name"), StoreId);
                 }
             }
         }

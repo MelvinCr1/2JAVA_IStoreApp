@@ -1,99 +1,98 @@
 package IStoreApp.ui;
 
-import java.util.Scanner;
-import java.util.List;
-import IStoreApp.model.Inventory;
-import IStoreApp.service.InventoryManager;
-import IStoreApp.model.Store;
-import IStoreApp.model.Item;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class InventoryUI {
-    private static final Scanner scanner = new Scanner(System.in);
+public class InventoryUI extends JFrame {
+    private static final JTextField storeIdField = new JTextField(20);
+    private static final JTextField inventoryIdField = new JTextField(20);
+    private static final JTextField itemIdField = new JTextField(20);
+    private static final JTextField quantityAdjustmentField = new JTextField(20);
 
-    public static void createInventory() {
-        System.out.println("Création d'un nouvel inventaire :");
-        System.out.print("Entrez l'ID du magasin associé à cet inventaire : ");
-        int storeId = scanner.nextInt();
-        scanner.nextLine();
+    public InventoryUI() {
+        setTitle("Gestion des inventaires");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
 
-        // Vérifier si le magasin existe
-        Store store = IStoreApp.service.StoreManager.getStoreById(storeId);
-        if (store == null) {
-            System.out.println("Aucun magasin trouvé avec cet ID. Impossible de créer l'inventaire.");
-            return;
-        }
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(6, 1, 10, 10)); // 6 lignes, 1 colonne, espacement de 10 pixels
 
-        // Création du nouvel inventaire associé au magasin spécifié
-        Inventory newInventory = new Inventory(storeId);
+        // Saisie l'ID du magasin associé à l'inventaire
+        panel.add(new JLabel("ID du magasin associé à l'inventaire :"));
+        panel.add(storeIdField);
 
-        // Appel de la méthode de gestion pour créer l'inventaire
-        InventoryManager.createInventory(newInventory);
-    }
+        // Saisie ID de l'inventaire
+        panel.add(new JLabel("ID de l'inventaire :"));
+        panel.add(inventoryIdField);
 
-    public static void displayInventoryItems() {
-        System.out.println("Affichage des articles dans un inventaire :");
-        System.out.print("Entrez l'ID de l'inventaire : ");
-        int inventoryId = scanner.nextInt();
-        scanner.nextLine(); // Pour consommer la nouvelle ligne
+        // Saisie ID de l'article
+        panel.add(new JLabel("ID de l'article :"));
+        panel.add(itemIdField);
 
-        // Appeler la méthode de gestion pour récupérer les articles de l'inventaire par son ID
-        List<Item> items = InventoryManager.getInventoryItems(inventoryId);
+        // Saisie ajustement de quantité
+        panel.add(new JLabel("Ajustement de quantité (+ pour augmenter, - pour diminuer) :"));
+        panel.add(quantityAdjustmentField);
 
-        if (items != null && !items.isEmpty()) {
-            // Afficher les détails de chaque article dans l'inventaire
-            System.out.println("Articles dans l'inventaire :");
-            for (Item item : items) {
-                System.out.println("ID : " + item.getId() + ", Nom : " + item.getName() + ", Prix : " + item.getPrice());
+        // Bouton pour créer un nouvel inventaire
+        JButton createInventoryButton = new JButton("Créer un nouvel inventaire");
+        createInventoryButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int storeId = Integer.parseInt(storeIdField.getText());
+                // IStoreApp.service.InventoryManager.createInventory(new Inventory(storeId));
+                JOptionPane.showMessageDialog(InventoryUI.this, "Pas encore développé");
             }
-        } else {
-            System.out.println("Aucun article trouvé dans cet inventaire.");
-        }
-    }
+        });
+        panel.add(createInventoryButton);
 
-    public static void adjustInventoryItemQuantity() {
-        System.out.println("Ajustement de la quantité d'un article dans un inventaire :");
-        System.out.print("Entrez l'ID de l'article : ");
-        int itemId = scanner.nextInt();
-        scanner.nextLine(); // Pour consommer la nouvelle ligne
-        System.out.print("Entrez l'ajustement de quantité (+ pour augmenter, - pour diminuer) : ");
-        int quantityAdjustment = scanner.nextInt();
-        scanner.nextLine(); // Pour consommer la nouvelle ligne
-
-        // Appeler la méthode de gestion pour ajuster la quantité de l'article dans l'inventaire
-        IStoreApp.service.InventoryManager.adjustInventoryItemQuantity(itemId, quantityAdjustment);
-        System.out.println("Quantité d'article ajustée avec succès !");
-    }
-
-    public static void mainMenuInventory() {
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("=== Menu Principal Inventaire ===");
-            System.out.println("1. Créer un nouvel inventaire");
-            System.out.println("2. Afficher les articles dans un inventaire");
-            System.out.println("3. Ajuster la quantité d'un article dans un inventaire");
-            System.out.println("4. Quitter");
-
-            System.out.print("Entrez votre choix : ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Pour consommer la nouvelle ligne
-
-            switch (choice) {
-                case 1:
-                    createInventory();
-                    break;
-                case 2:
-                    displayInventoryItems();
-                    break;
-                case 3:
-                    adjustInventoryItemQuantity();
-                    break;
-                case 4:
-                    exit = true;
-                    System.out.println("Au revoir !");
-                    break;
-                default:
-                    System.out.println("Choix invalide. Veuillez choisir une option valide.");
+        // Bouton pour afficher les articles dans un inventaire
+        JButton displayItemsButton = new JButton("Afficher les articles dans un inventaire");
+        displayItemsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int inventoryId = Integer.parseInt(inventoryIdField.getText());
+                // List<Item> items = IStoreApp.service.InventoryManager.getInventoryItems(inventoryId);
+                JOptionPane.showMessageDialog(InventoryUI.this, "Pas encore développé");
             }
-        }
+        });
+        panel.add(displayItemsButton);
+
+        // Bouton pour ajuster la quantité d'un article dans un inventaire
+        JButton adjustQuantityButton = new JButton("Ajuster la quantité d'un article dans un inventaire");
+        adjustQuantityButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int itemId = Integer.parseInt(itemIdField.getText());
+                int quantityAdjustment = Integer.parseInt(quantityAdjustmentField.getText());
+                // IStoreApp.service.InventoryManager.adjustInventoryItemQuantity(itemId, quantityAdjustment);
+                JOptionPane.showMessageDialog(InventoryUI.this, "Pas encore développé");
+            }
+        });
+        panel.add(adjustQuantityButton);
+
+        // Bouton pour quitter l'application
+        JButton exitButton = new JButton("Quitter");
+        exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Au revoir !");
+                System.exit(0);
+            }
+        });
+        panel.add(exitButton);
+
+        // Ajout du panneau au cadre principal
+        add(panel);
+
+        // Centrer la fenêtre
+        setLocationRelativeTo(null);
+    }
+
+    public static void main(/*String[] args*/) {
+        // Création et affichage de l'interface utilisateur
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                InventoryUI inventoryUI = new InventoryUI();
+                inventoryUI.setVisible(true);
+            }
+        });
     }
 }

@@ -3,11 +3,21 @@ package IStoreApp.service;
 import IStoreApp.model.User;
 import IStoreApp.dataAccess.UserAccess;
 
+import java.sql.SQLException;
+
 public class UserManager {
-    private static final UserAccess userAccess = new UserAccess();
+    private static final UserAccess userAccess;
+
+    static {
+        try {
+            userAccess = new UserAccess();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     // Méthode pour créer un nouvel utilisateur
-    public static void createUser(User user){
+    public static void createUser(User user) throws SQLException {
         // Vérification si l'email est déja utilisé
         if (getUserByEmail(user.getEmail()) != null){
             System.out.println("Erreur : Cet email est déja utilisé.");
@@ -19,13 +29,13 @@ public class UserManager {
     }
 
     // Méthode pour récupérer un utilisateur par son email
-    public static User getUserByEmail(String email){
+    public static User getUserByEmail(String email) throws SQLException {
         // Appel à la méthode d'accès aux données pour récupérer l'utilisateur par email
         return userAccess.getUserByEmail(email);
     }
 
     // Méthode pour mettre à jour un utilisateur existant
-    public static void updateUser(User user){
+    public static void updateUser(User user) throws SQLException {
         // Vérification si l'utilisateur existe
         User existingUser = getUserByEmail(user.getEmail());
         if (existingUser == null) {
@@ -38,7 +48,7 @@ public class UserManager {
     }
 
     // Méthode pour supprimer un utilisateur
-    public static void deleteUser(User user){
+    public static void deleteUser(User user) throws SQLException {
         // Vérification si l'utilisateur existe
         User existingUser = getUserByEmail(user.getEmail());
         if (existingUser == null){

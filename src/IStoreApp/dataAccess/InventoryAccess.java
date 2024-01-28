@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import IStoreApp.model.Inventory;
 
 public class InventoryAccess {
-    private Connection connection;
+    private static Connection connection;
 
-    public InventoryAccess(Connection connection) {
-        this.connection = connection;
+    public InventoryAccess() throws SQLException {
+        this.connection = DatabaseManager.getConnection();
     }
 
     // Méthode pour créer un nouvel inventaire dans la base de données
-    public void createInventory(Inventory inventory) throws SQLException {
+    public static void createInventory(Inventory inventory) throws SQLException {
         String query = "INSERT INTO inventories (store_id) VALUES (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, inventory.getStoreId());
