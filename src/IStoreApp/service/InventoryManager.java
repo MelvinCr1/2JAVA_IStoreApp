@@ -1,3 +1,7 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+// --------------------
+
 package IStoreApp.service;
 
 import IStoreApp.model.Inventory;
@@ -25,7 +29,7 @@ public class InventoryManager {
             System.out.println("Erreur : Un inventaire pour ce magasin existe déja.");
             return;
         }
-        IStoreApp.dataAccess.InventoryAccess.createInventory(inventory);
+        InventoryAccess.createInventory(inventory);
         System.out.println("Inventaire crée avec succès.");
     }
 

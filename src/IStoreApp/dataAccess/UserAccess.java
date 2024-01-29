@@ -1,16 +1,22 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+// --------------------
+
 package IStoreApp.dataAccess;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import IStoreApp.Main;
 import IStoreApp.model.User;
 
 public class UserAccess {
     private static Connection connection;
 
     public UserAccess() throws SQLException {
-        this.connection = DatabaseManager.getConnection();
+        this.connection = Main.getConnection();
     }
 
     // Méthode pour créer un nouvel utilisateur dans la base de données
@@ -53,7 +59,7 @@ public class UserAccess {
             statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    return new User(email, resultSet.getString("pseudo"), resultSet.getString("password"));
+                    return new User(email, resultSet.getString("pseudo"), resultSet.getString("password"), resultSet.getString("role"));
                 }
             }
         }

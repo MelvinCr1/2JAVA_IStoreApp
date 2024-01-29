@@ -1,3 +1,8 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+// --------------------
+// Classe pour vérifier les informations de connexion
+
 package IStoreApp.service;
 
 import IStoreApp.dataAccess.UserAccess;
@@ -6,7 +11,6 @@ import IStoreApp.model.User;
 import java.sql.SQLException;
 
 public class Authentication {
-    // Méthode pour vérifier les informations de connexion
     public static boolean authenticate(String email, String password) {
         try {
             // Récupérer l'utilisateur par son email
@@ -23,8 +27,6 @@ public class Authentication {
 
     // Méthode pour vérifier si un email est whitelisté
     public static boolean isEmailWhitelisted(String email) {
-        // Implémentez votre logique de vérification de l'email whitelisté ici
-        // Par exemple, vous pouvez vérifier une liste prédéfinie d'adresses email autorisées
-        return false;
+        return true;
     }
 }

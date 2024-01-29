@@ -1,3 +1,6 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+
 package IStoreApp.model;
 
 public class User {
@@ -6,7 +9,7 @@ public class User {
     private String password;
     private String role;
 
-    public User(String email, String pseudo, String password) {
+    public User(String email, String pseudo, String password, String role) {
         this.email = email;
         this.pseudo = pseudo;
         this.password = password;
@@ -21,6 +24,18 @@ public class User {
         return pseudo;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String newRole){this.role = newRole;}
+
+    public void setEmail(String newEmail){this.email = newEmail;}
+
     public void setPseudo(String newPseudo) {
         this.pseudo = newPseudo;
     }
@@ -29,11 +44,4 @@ public class User {
         this.password = newPassword;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getRole() {
-        return role;
-    }
 }

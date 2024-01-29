@@ -1,8 +1,12 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+
 package IStoreApp.ui;
 
 import IStoreApp.service.Authentication;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class LoginUI extends JFrame {
     private JTextField emailField;
@@ -24,7 +28,13 @@ public class LoginUI extends JFrame {
         passwordField = new JPasswordField(20);
 
         JButton loginButton = new JButton("Se connecter");
-        loginButton.addActionListener(e -> authenticate());
+        loginButton.addActionListener(e -> {
+            try {
+                authenticate();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         panel.add(emailLabel);
         panel.add(emailField);
@@ -36,7 +46,7 @@ public class LoginUI extends JFrame {
         setVisible(true);
     }
 
-    private void authenticate() {
+    private void authenticate() throws SQLException {
         String email = emailField.getText();
         String password = new String(passwordField.getPassword());
 
@@ -56,7 +66,7 @@ public class LoginUI extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main() {
         SwingUtilities.invokeLater(LoginUI::new);
     }
 }

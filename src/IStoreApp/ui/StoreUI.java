@@ -1,3 +1,7 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+// --------------------
+
 package IStoreApp.ui;
 
 import javax.swing.*;
@@ -80,7 +84,6 @@ public class StoreUI extends JFrame {
     }
 
     public static void main(/*String[] args*/) {
-        // Création et affichage de l'interface utilisateur
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 StoreUI storeUI = new StoreUI();

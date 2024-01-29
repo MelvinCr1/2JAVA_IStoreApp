@@ -1,16 +1,22 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+// --------------------
+
 package IStoreApp.dataAccess;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import IStoreApp.Main;
 import IStoreApp.model.Store;
 
 public class StoreAccess {
     private Connection connection;
 
     public StoreAccess() throws SQLException {
-        this.connection = DatabaseManager.getConnection();
+        this.connection = Main.getConnection();
     }
 
     // Méthode pour créer un nouveau magasin dans la base de données
