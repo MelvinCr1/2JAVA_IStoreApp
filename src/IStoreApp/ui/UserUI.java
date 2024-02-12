@@ -1,3 +1,7 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+// --------------------
+
 package IStoreApp.ui;
 
 import java.sql.SQLException;
@@ -16,9 +20,11 @@ public class UserUI {
         String pseudo = scanner.nextLine();
         System.out.print("Entrez le mot de passe de l'utilisateur : ");
         String password = scanner.nextLine();
+        System.out.print("Entrez le role de l'utilisateur : ");
+        String role = scanner.nextLine();
 
         // Création d'un nouvel objet User avec les informations saisies
-        User newUser = new User(email, pseudo, password);
+        User newUser = new User(email, pseudo, password, role);
 
         // Appel de la méthode de gestion pour la création de l'utilisateur
         UserManager.createUser(newUser);
@@ -37,6 +43,7 @@ public class UserUI {
             System.out.println("Détails de l'utilisateur :");
             System.out.println("Email : " + user.getEmail());
             System.out.println("Pseudo : " + user.getPseudo());
+            System.out.println("Role : " + user.getRole());
         } else{
             System.out.println("Aucun utilisateur trouvé avec cet email.");
         }
@@ -54,10 +61,13 @@ public class UserUI {
             String newPseudo = scanner.nextLine();
             System.out.print("Entrez le nouveau mot de passe de l'utilisateur : ");
             String newPassword = scanner.nextLine();
+            System.out.print("Entrez le nouveau role de l'utilisateur : ");
+            String newRole = scanner.nextLine();
 
             // Mise à jour des infos utilisateur
             user.setPseudo(newPseudo);
             user.setPassword(newPassword);
+            user.setRole(newRole);
 
             // Appel de la méthode de gestion pour la mise à jour de l'utilisateur
             UserManager.updateUser(user);

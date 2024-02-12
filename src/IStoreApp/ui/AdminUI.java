@@ -1,3 +1,7 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+// --------------------
+
 package IStoreApp.ui;
 
 import javax.swing.*;
@@ -18,15 +22,12 @@ public class AdminUI extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(5, 1, 10, 10)); // 5 lignes, 1 colonne, espacement de 10 pixels
 
-        // Saisie email de l'administrateur
         panel.add(new JLabel("Email de l'administrateur :"));
         panel.add(emailField);
 
-        // Saisie pseudo de l'administrateur
         panel.add(new JLabel("Pseudo de l'administrateur :"));
         panel.add(pseudoField);
 
-        // Saisie mot de passe de l'administrateur
         panel.add(new JLabel("Mot de passe de l'administrateur :"));
         panel.add(passwordField);
 
@@ -100,7 +101,6 @@ public class AdminUI extends JFrame {
     }
 
     public static void main(/*String[] args*/) {
-        // Création et affichage de l'interface utilisateur
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 AdminUI adminUI = new AdminUI();
