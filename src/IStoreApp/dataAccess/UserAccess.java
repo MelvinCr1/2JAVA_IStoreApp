@@ -54,14 +54,15 @@ public class UserAccess {
 
     // Méthode pour récupérer un utilisateur par son email
     public static User getUserByEmail(String email) throws SQLException {
+        Connection connection = Main.getConnection();
         String query = "SELECT * FROM users WHERE email = ?";
-        Connection connection = IStoreApp.Main.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     return new User(email, resultSet.getString("pseudo"), resultSet.getString("password"), resultSet.getString("role"));
                 }
+                connection.close();
             }
         }
         connection.close();
