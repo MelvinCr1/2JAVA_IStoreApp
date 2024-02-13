@@ -68,7 +68,6 @@ public class UIManager extends JFrame {
         JButton exitButton = new JButton("Quitter");
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Au revoir !");
                 System.exit(0);
             }
         });

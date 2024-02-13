@@ -122,7 +122,6 @@ public class UserUI {
                     break;
                 case 5:
                     exit = true;
-                    System.out.println("Au revoir !");
                     break;
                 default:
                     System.out.println("Choix invalide. Veuillez choisir une option valide.");

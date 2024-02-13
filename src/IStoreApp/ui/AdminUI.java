@@ -4,10 +4,14 @@
 
 package IStoreApp.ui;
 
+import IStoreApp.model.Admin;
+import IStoreApp.service.AdminManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class AdminUI extends JFrame {
     private static final JTextField emailField = new JTextField(20);
@@ -38,8 +42,18 @@ public class AdminUI extends JFrame {
                 String email = emailField.getText();
                 String pseudo = pseudoField.getText();
                 String password = new String(passwordField.getPassword());
-                // IStoreApp.service.AdminManager.createAdmin(new Admin(email, pseudo, password));
-                JOptionPane.showMessageDialog(AdminUI.this, "Pas encore développé");
+
+                // Vérifier si l'un des champs est vide
+                if(email.isEmpty() || pseudo.isEmpty() || password.isEmpty()) {
+                    JOptionPane.showMessageDialog(AdminUI.this, "Veuillez remplir tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                try {
+                    IStoreApp.service.AdminManager.createAdmin(new Admin(email, pseudo, password));
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         panel.add(createAdminButton);
@@ -49,8 +63,12 @@ public class AdminUI extends JFrame {
         displayAdminButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String email = emailField.getText();
-                // Admin admin = AdminManager.getAdminByEmail(email);
-                JOptionPane.showMessageDialog(AdminUI.this, "Pas encore développé");
+                try {
+                    Admin admin = AdminManager.getAdminByEmail(email);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                //JOptionPane.showMessageDialog(AdminUI.this, "Pas encore développé");
             }
         });
         panel.add(displayAdminButton);
@@ -76,9 +94,17 @@ public class AdminUI extends JFrame {
         deleteAdminButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String email = emailField.getText();
-                // Admin admin = AdminManager.getAdminByEmail(email);
-                // AdminManager.deleteAdmin(admin);
-                JOptionPane.showMessageDialog(AdminUI.this, "Pas encore développé");
+                Admin admin = null;
+                try {
+                    admin = AdminManager.getAdminByEmail(email);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                try {
+                    AdminManager.deleteAdmin(admin);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         panel.add(deleteAdminButton);
@@ -87,7 +113,6 @@ public class AdminUI extends JFrame {
         JButton exitButton = new JButton("Quitter");
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Au revoir !");
                 System.exit(0);
             }
         });

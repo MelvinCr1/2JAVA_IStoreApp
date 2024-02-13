@@ -51,7 +51,7 @@ public class LoginUI extends JFrame {
         String password = new String(passwordField.getPassword());
 
         if (Authentication.authenticate(email, password)) {
-            JOptionPane.showMessageDialog(this, "Authentification réussie, Bienvenue !");
+            JOptionPane.showMessageDialog(this, "Authentification réussie !");
             // Redirection vers le menu principal
             UIManager.main(new String[]{});
             dispose(); // Fermer la fenêtre
@@ -59,7 +59,7 @@ public class LoginUI extends JFrame {
             int option = JOptionPane.showConfirmDialog(this, "Erreur : Email ou mot de passe incorrect. Voulez-vous réessayer ?", "Erreur d'authentification", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.NO_OPTION) {
                 // Quitter
-                JOptionPane.showMessageDialog(this, "Au revoir !");
+                JOptionPane.showMessageDialog(this, "Déconnexion !");
                 dispose(); // Fermer la fenêtre
                 System.exit(0);
             }
