@@ -23,7 +23,7 @@ public class UIManager extends JFrame {
         JButton userButton = new JButton("Gestion des utilisateurs");
         userButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(UIManager.this, "Pas encore développé");
+                UserUI.main();
             }
         });
         panel.add(userButton);

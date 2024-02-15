@@ -119,6 +119,7 @@ public class AdminUI extends JFrame {
         panel.add(exitButton);
 
         // Ajout du panneau au cadre principal
+        panel.add(createAdminButton);
         add(panel);
 
         // Centrer la fenêtre
