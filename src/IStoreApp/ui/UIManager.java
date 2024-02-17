@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import IStoreApp.service.Authentication;
 import IStoreApp.service.SessionManager;
 
 public class UIManager extends JFrame {
@@ -25,15 +26,17 @@ public class UIManager extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 1, 10, 10)); // 6 lignes, 1 colonne, espacement de 10 pixels
 
+        if (Authentication.isCurrentUserAdmin(sessionId)){
+            // Bouton pour la gestion de la whitelist
+            JButton adminButton = new JButton("Gestion de la whitelist");
+            adminButton.addActionListener(e -> AdminUI.main());
+            panel.add(adminButton);
+        }
+
         // Bouton pour la gestion des utilisateurs
         JButton userButton = new JButton("Gestion des utilisateurs");
-        userButton.addActionListener(e -> UserUI.main());
+        userButton.addActionListener(e -> UserUI.main(sessionId));
         panel.add(userButton);
-
-        // Bouton pour la gestion des administrateurs
-        JButton adminButton = new JButton("Gestion des administrateurs");
-        adminButton.addActionListener(e -> AdminUI.main());
-        panel.add(adminButton);
 
         // Bouton pour la gestion des magasins
         JButton storeButton = new JButton("Gestion des magasins");
@@ -49,11 +52,6 @@ public class UIManager extends JFrame {
         JButton itemButton = new JButton("Gestion des articles");
         itemButton.addActionListener(e -> ItemUI.main());
         panel.add(itemButton);
-
-        // Bouton pour quitter l'application
-        JButton exitButton = new JButton("Quitter");
-        exitButton.addActionListener(e -> System.exit(0));
-        panel.add(exitButton);
 
         // Bouton pour se déconnecter
         JButton logoutButton = new JButton("Se déconnecter");
@@ -71,6 +69,11 @@ public class UIManager extends JFrame {
             }
         });
         panel.add(logoutButton);
+
+        // Bouton pour quitter l'application
+        JButton exitButton = new JButton("Quitter");
+        exitButton.addActionListener(e -> System.exit(0));
+        panel.add(exitButton);
 
         // Ajout du panneau au cadre principal
         add(panel);

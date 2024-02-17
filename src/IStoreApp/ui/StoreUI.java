@@ -24,7 +24,7 @@ public class StoreUI extends JFrame {
 
         setTitle("Gestion des utilisateurs");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(400, 300);
+        setSize(500, 300);
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(5, 1, 10, 10)); // 5 lignes, 1 colonne, espacement de 10 pixels

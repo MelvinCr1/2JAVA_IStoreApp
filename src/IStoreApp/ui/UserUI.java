@@ -18,8 +18,11 @@ public class UserUI extends JFrame {
     private static final JTextField pseudoField = new JTextField(20);
     private static final JPasswordField passwordField = new JPasswordField(20);
     private static final JTextField roleField = new JTextField((20));
+    private String sessionId;
 
-    public UserUI() {
+    public UserUI(String sessionId) {
+        this.sessionId = sessionId;
+
         setTitle("Gestion des utilisateurs");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(700, 600);
@@ -111,7 +114,7 @@ public class UserUI extends JFrame {
                 user.setPassword(newPassword);
                 user.setRole(newRole);
                 try {
-                    UserManager.updateUser(user);
+                    UserManager.updateUser(user, sessionId);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -131,7 +134,7 @@ public class UserUI extends JFrame {
                     throw new RuntimeException(ex);
                 }
                 try {
-                    UserManager.deleteUser(user);
+                    UserManager.deleteUser(user, sessionId);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -157,10 +160,10 @@ public class UserUI extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public static void main() {
+    public static void main(String sessionId) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                UserUI userUI = new UserUI();
+                UserUI userUI = new UserUI(sessionId);
                 userUI.setVisible(true);
             }
         });
