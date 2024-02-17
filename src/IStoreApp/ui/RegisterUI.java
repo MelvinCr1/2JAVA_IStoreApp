@@ -18,12 +18,12 @@ public class RegisterUI extends JFrame {
 
     public RegisterUI() {
         setTitle("Créer un compte");
-        setSize(300, 200);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Ferme uniquement la fenêtre actuelle
         setLocationRelativeTo(null); // Centrer la fenêtre
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 1, 10, 10)); // 5 lignes, 1 colonne, espacement de 10 pixels
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // 5 lignes, 1 colonne, espacement de 10 pixels
 
         panel.add(new JLabel("Email de l'utilisateur :"));
         panel.add(emailField);
@@ -59,10 +59,6 @@ public class RegisterUI extends JFrame {
                 }
             }
         });
-
-        panel.add(emailField);
-        panel.add(emailField);
-        panel.add(passwordField);
         panel.add(registerButton);
 
         add(panel);
