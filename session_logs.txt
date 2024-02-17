@@ -2,3 +2,5 @@
 2024-02-17 16:53:25 - Session started - User: melvin@admin.com, Session ID: fcf9e56a-5ef8-48a3-a812-8827925da74b
 2024-02-17 16:53:27 - Session ended - User: melvin@admin.com, Session ID: fcf9e56a-5ef8-48a3-a812-8827925da74b
 2024-02-17 16:53:38 - Session started - User: melvin.cureau@test.com, Session ID: ff55c909-6e09-4766-a6f1-c7b2f3e7fdea
+2024-02-17 16:58:11 - Session started - User: melvin@admin.com, Session ID: cade0150-4f46-40a6-871c-47be4185d68c
+2024-02-17 16:58:43 - Session started - User: melvin@admin.com, Session ID: f00607eb-7db7-4269-a596-6619d4ea562b
