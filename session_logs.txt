@@ -4,3 +4,12 @@
 2024-02-17 16:53:38 - Session started - User: melvin.cureau@test.com, Session ID: ff55c909-6e09-4766-a6f1-c7b2f3e7fdea
 2024-02-17 16:58:11 - Session started - User: melvin@admin.com, Session ID: cade0150-4f46-40a6-871c-47be4185d68c
 2024-02-17 16:58:43 - Session started - User: melvin@admin.com, Session ID: f00607eb-7db7-4269-a596-6619d4ea562b
+2024-02-17 17:32:55 - Session started - User: melvin@admin.com, Session ID: b3a5e216-4d09-4b38-b323-61c48667c6a0
+2024-02-17 17:38:39 - Session started - User: melvin@admin.com, Session ID: 60f7e793-2bfb-4aed-ba65-c7bd05965ea0
+2024-02-17 17:40:32 - Session started - User: melvin@admin.com, Session ID: 46100fc6-8211-4cab-a675-5f73355674d1
+2024-02-17 17:42:04 - Session started - User: melvin@admin.com, Session ID: 7058130a-f9b2-4b0b-af0c-dc5645b2bd28
+2024-02-17 17:44:58 - Session started - User: melvin@admin.com, Session ID: 9f708e6d-b9b0-434a-94c4-dad26d4094a0
+2024-02-17 17:49:43 - Session started - User: melvin@admin.com, Session ID: 84cda512-f35a-442a-a5e2-8caafd194b3a
+2024-02-17 18:01:08 - Session started - User: melvin@admin.com, Session ID: f4259caf-14cb-4d9b-87c0-caa2d93ab6c1
+2024-02-17 18:04:34 - Session started - User: melvin@admin.com, Session ID: 4a572fbf-b859-44de-8a7d-a4359b812677
+2024-02-17 18:05:00 - Session started - User: melvin.cureau@test.com, Session ID: 2ea8e841-62ec-40d4-9f03-6b16953b16c0

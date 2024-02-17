@@ -18,12 +18,11 @@ public class Main {
 
     public static boolean testerConnexion() {
         try {
-            // Charger le pilote JDBC
+            // Chargement du pilote JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Établir la connexion à la base de données
+            // Mise en place de la connexion à la base de données
             try (Connection connexion = DriverManager.getConnection(URL, UTILISATEUR, MOT_DE_PASSE)) {
-                // La connexion est réussie si aucun SQLException n'est levé
                 return true;
             }
         } catch (ClassNotFoundException | SQLException e) {

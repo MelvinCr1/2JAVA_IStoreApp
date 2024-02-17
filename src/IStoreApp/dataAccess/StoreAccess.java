@@ -50,15 +50,17 @@ public class StoreAccess {
     // Méthode pour récupérer un magasin par son identifiant
     public Store getStoreById(int storeId) throws SQLException {
         String query = "SELECT * FROM stores WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection = Main.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, storeId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    int StoreId = 0;
-                    return new Store(resultSet.getString("name"), StoreId);
+                    String name = resultSet.getString("name");
+                    return new Store(name, storeId);
                 }
             }
         }
         return null;
     }
+
 }

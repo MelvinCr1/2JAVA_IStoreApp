@@ -18,6 +18,7 @@ public class RegisterUI extends JFrame {
     private static JTextField emailField = new JTextField(20);
     private static JTextField pseudoField = new JTextField(20);
     private static JPasswordField passwordField = new JPasswordField(20);
+    private static JPasswordField confirmPasswordField = new JPasswordField(20);
     private static JTextField roleField = new JTextField((20));
 
     public RegisterUI() {
@@ -38,6 +39,9 @@ public class RegisterUI extends JFrame {
         panel.add(new JLabel("Mot de passe de l'utilisateur :"));
         panel.add(passwordField);
 
+        panel.add(new JLabel("Confirmation du mot de passe :"));
+        panel.add(confirmPasswordField);
+
         panel.add(new JLabel("Rôle de l'utilisateur :"));
         panel.add(roleField);
 
@@ -48,11 +52,18 @@ public class RegisterUI extends JFrame {
                 String email = emailField.getText();
                 String pseudo = pseudoField.getText();
                 String password = new String(passwordField.getPassword());
+                String confirmPassword = new String(confirmPasswordField.getPassword());
                 String role = roleField.getText();
 
                 // Vérification si tous les champs sont remplis
                 if (email.isEmpty() || pseudo.isEmpty() || password.isEmpty() || role.isEmpty()) {
                     JOptionPane.showMessageDialog(RegisterUI.this, "Veuillez remplir tous les champs.");
+                    return;
+                }
+
+                // Vérification si les mots de passe correspondent
+                if (!password.equals(confirmPassword)) {
+                    JOptionPane.showMessageDialog(RegisterUI.this, "Les mots de passe ne correspondent pas.");
                     return;
                 }
 

@@ -26,38 +26,30 @@ public class UIManager extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 1, 10, 10)); // 6 lignes, 1 colonne, espacement de 10 pixels
 
-        // Vérifier le rôle de l'utilisateur
-        if (Authentication.isCurrentUserAdmin(sessionId)) {
-            // Bouton pour la gestion des utilisateurs
-            JButton userButton = new JButton("Gestion des utilisateurs");
-            userButton.addActionListener(e -> UserUI.main());
-            panel.add(userButton);
+        // Bouton pour la gestion des utilisateurs
+        JButton userButton = new JButton("Gestion des utilisateurs");
+        userButton.addActionListener(e -> UserUI.main());
+        panel.add(userButton);
 
-            // Bouton pour la gestion des administrateurs
-            JButton adminButton = new JButton("Gestion des administrateurs");
-            adminButton.addActionListener(e -> AdminUI.main());
-            panel.add(adminButton);
+        // Bouton pour la gestion des administrateurs
+        JButton adminButton = new JButton("Gestion des administrateurs");
+        adminButton.addActionListener(e -> AdminUI.main());
+        panel.add(adminButton);
 
-            // Bouton pour la gestion des magasins
-            JButton storeButton = new JButton("Gestion des magasins");
-            storeButton.addActionListener(e -> StoreUI.main());
-            panel.add(storeButton);
+        // Bouton pour la gestion des magasins
+        JButton storeButton = new JButton("Gestion des magasins");
+        storeButton.addActionListener(e -> StoreUI.main(sessionId));
+        panel.add(storeButton);
 
-            // Bouton pour la gestion des inventaires
-            JButton inventoryButton = new JButton("Gestion des inventaires");
-            inventoryButton.addActionListener(e -> InventoryUI.main());
-            panel.add(inventoryButton);
+        // Bouton pour la gestion des inventaires
+        JButton inventoryButton = new JButton("Gestion des inventaires");
+        inventoryButton.addActionListener(e -> InventoryUI.main());
+        panel.add(inventoryButton);
 
-            // Bouton pour la gestion des articles
-            JButton itemButton = new JButton("Gestion des articles");
-            itemButton.addActionListener(e -> ItemUI.main());
-            panel.add(itemButton);
-        } else {
-            // Bouton pour la gestion des utilisateurs
-            JButton userButton = new JButton("Gestion des utilisateurs");
-            userButton.addActionListener(e -> UserUI.main());
-            panel.add(userButton);
-        }
+        // Bouton pour la gestion des articles
+        JButton itemButton = new JButton("Gestion des articles");
+        itemButton.addActionListener(e -> ItemUI.main());
+        panel.add(itemButton);
 
         // Bouton pour quitter l'application
         JButton exitButton = new JButton("Quitter");
