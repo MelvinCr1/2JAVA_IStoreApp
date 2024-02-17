@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import IStoreApp.service.Authentication;
+import IStoreApp.service.SessionManager;
 
 public class UIManager extends JFrame {
     private String sessionId;
@@ -62,6 +63,23 @@ public class UIManager extends JFrame {
         JButton exitButton = new JButton("Quitter");
         exitButton.addActionListener(e -> System.exit(0));
         panel.add(exitButton);
+
+        // Bouton pour se déconnecter
+        JButton logoutButton = new JButton("Se déconnecter");
+        logoutButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Mettre fin à la session actuelle
+                SessionManager.endSession(sessionId);
+
+                // Afficher la fenêtre de connexion
+                LoginUI loginUI = new LoginUI();
+                loginUI.setVisible(true);
+
+                // Fermer la fenêtre actuelle
+                dispose();
+            }
+        });
+        panel.add(logoutButton);
 
         // Ajout du panneau au cadre principal
         add(panel);
