@@ -20,7 +20,7 @@ public class AdminUI extends JFrame {
 
     public AdminUI() {
         setTitle("Gestion des administrateurs");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 300);
 
         JPanel panel = new JPanel();

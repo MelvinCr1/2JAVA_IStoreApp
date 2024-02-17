@@ -17,7 +17,7 @@ public class InventoryUI extends JFrame {
 
     public InventoryUI() {
         setTitle("Gestion des inventaires");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 300);
 
         JPanel panel = new JPanel();

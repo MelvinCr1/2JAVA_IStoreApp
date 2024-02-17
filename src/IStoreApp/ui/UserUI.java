@@ -21,7 +21,7 @@ public class UserUI extends JFrame {
 
     public UserUI() {
         setTitle("Gestion des utilisateurs");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(700, 600);
 
         JPanel panel = new JPanel();

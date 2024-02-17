@@ -19,7 +19,7 @@ public class StoreUI extends JFrame {
 
     public StoreUI() {
         setTitle("Gestion des utilisateurs");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 300);
 
         JPanel panel = new JPanel();
