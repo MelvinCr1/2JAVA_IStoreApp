@@ -21,6 +21,7 @@ public class UserAccess {
 
     // Méthode pour créer un nouvel utilisateur dans la base de données
     public static void createUser(User user) throws SQLException {
+        Connection connection = Main.getConnection();
         String query = "INSERT INTO users (email, pseudo, password, role) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getEmail());

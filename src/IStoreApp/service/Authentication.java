@@ -6,6 +6,7 @@
 package IStoreApp.service;
 
 import IStoreApp.dataAccess.UserAccess;
+import IStoreApp.dataAccess.WhiteListAccess;
 import IStoreApp.model.User;
 
 import java.sql.SQLException;
@@ -27,6 +28,13 @@ public class Authentication {
 
     // Méthode pour vérifier si un email est whitelisté
     public static boolean isEmailWhitelisted(String email) {
-        return true;
+        try {
+            // Vérifier si l'email est whitelisté
+            return WhiteListAccess.isEmailWhitelisted(email);
+        } catch (SQLException e) {
+            // Gérer l'exception liée à l'accès à la base de données
+            System.err.println("Erreur lors de la vérification de la liste blanche : " + e.getMessage());
+            return false;
+        }
     }
 }
