@@ -20,7 +20,7 @@ public class UIManager extends JFrame {
 
         setTitle("iStore Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(500, 300);
 
         // Création d'un panneau pour contenir les boutons
         JPanel panel = new JPanel();
