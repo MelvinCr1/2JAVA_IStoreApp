@@ -89,7 +89,7 @@ public class InventoryUI extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public static void main(/*String[] args*/) {
+    public static void main() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 InventoryUI inventoryUI = new InventoryUI();

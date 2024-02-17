@@ -6,6 +6,8 @@ package IStoreApp.ui;
 import IStoreApp.service.Authentication;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class LoginUI extends JFrame {
@@ -36,11 +38,21 @@ public class LoginUI extends JFrame {
             }
         });
 
+        JButton registerButton = new JButton("Créer un compte");
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                RegisterUI registerUI = new RegisterUI();
+                //registerUI.setVisible(true);
+                dispose(); // Ferme la fenêtre de connexion
+            }
+        });
+
         panel.add(emailLabel);
         panel.add(emailField);
         panel.add(passwordLabel);
         panel.add(passwordField);
         panel.add(loginButton);
+        panel.add(registerButton);
 
         add(panel);
         setVisible(true);

@@ -22,10 +22,10 @@ public class UserUI extends JFrame {
     public UserUI() {
         setTitle("Gestion des utilisateurs");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(700, 600);
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 1, 10, 10)); // 5 lignes, 1 colonne, espacement de 10 pixels
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // 5 lignes, 1 colonne, espacement de 10 pixels
 
         panel.add(new JLabel("Email de l'utilisateur :"));
         panel.add(emailField);
@@ -67,10 +67,26 @@ public class UserUI extends JFrame {
         JButton displayUserButton = new JButton("Afficher les détails d'un utilisateur");
         displayUserButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // Récupérer l'email de l'utilisateur depuis le champ de saisie
                 String email = emailField.getText();
+
                 try {
+                    // Récupérer l'utilisateur depuis la base de données en utilisant son email
                     User user = UserManager.getUserByEmail(email);
+
+                    // Vérifier si l'utilisateur existe
+                    if (user != null) {
+                        // Afficher les détails de l'utilisateur dans une boîte de dialogue
+                        JOptionPane.showMessageDialog(null, "Détails de l'utilisateur :\n" +
+                                "Email: " + user.getEmail() + "\n" +
+                                "Nom: " + user.getPseudo() + "\n" +
+                                "Role: " + user.getRole());
+                    } else {
+                        // Afficher un message si l'utilisateur n'existe pas
+                        JOptionPane.showMessageDialog(null, "L'utilisateur avec l'email " + email + " n'existe pas.");
+                    }
                 } catch (SQLException ex) {
+                    // Gérer les exceptions liées à l'accès à la base de données
                     throw new RuntimeException(ex);
                 }
             }
@@ -84,11 +100,21 @@ public class UserUI extends JFrame {
                 String email = emailField.getText();
                 String newPseudo = pseudoField.getText();
                 String newPassword = new String(passwordField.getPassword());
-                // Admin admin = AdminManager.getAdminByEmail(email);
-                // admin.setPseudo(newPseudo);
-                // admin.setPassword(newPassword);
-                // AdminManager.updateAdmin(admin);
-                JOptionPane.showMessageDialog(UserUI.this, "Pas encore développé");
+                String newRole = roleField.getText();
+                User user = null;
+                try {
+                    user = UserManager.getUserByEmail(email);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                user.setPseudo(newPseudo);
+                user.setPassword(newPassword);
+                user.setRole(newRole);
+                try {
+                    UserManager.updateUser(user);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         panel.add(updateAdminButton);
@@ -120,17 +146,18 @@ public class UserUI extends JFrame {
                 System.exit(0);
             }
         });
-        panel.add(exitButton);
 
         // Ajout du panneau au cadre principal
         panel.add(createUserButton);
         add(panel);
 
+        panel.add(exitButton);
+
         // Centrer la fenêtre
         setLocationRelativeTo(null);
     }
 
-    public static void main(/*String[] args*/) {
+    public static void main() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 UserUI userUI = new UserUI();
@@ -139,149 +166,3 @@ public class UserUI extends JFrame {
         });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Copyright (C) 2024 by CUREAU Melvin
-// Released under the terms of the Creative Commons Licence
-// --------------------
-/*
-public class UserUI {
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void createUser() throws SQLException {
-        System.out.println("Création d'un nouvel utilisateur :");
-        System.out.print("Entrez l'email de l'utilisateur : ");
-        String email = scanner.nextLine();
-        System.out.print("Entrez le pseudo de l'utilisateur : ");
-        String pseudo = scanner.nextLine();
-        System.out.print("Entrez le mot de passe de l'utilisateur : ");
-        String password = scanner.nextLine();
-        System.out.print("Entrez le role de l'utilisateur : ");
-        String role = scanner.nextLine();
-
-        // Création d'un nouvel objet User avec les informations saisies
-        User newUser = new User(email, pseudo, password, role);
-
-        // Appel de la méthode de gestion pour la création de l'utilisateur
-        UserManager.createUser(newUser);
-    }
-
-    public static void displayUserDetails() throws SQLException {
-        System.out.println("Affichage des détails d'un utilisateur :");
-        System.out.println("Entrez l'email de l'utilisateur");
-        String email = scanner.nextLine();
-
-        // Appel de la méthode de gestion pour récupérer l'utilisateur par email
-        User user = UserManager.getUserByEmail(email);
-
-        if (user != null){
-            // Affichage des détails de l'utilisateur
-            System.out.println("Détails de l'utilisateur :");
-            System.out.println("Email : " + user.getEmail());
-            System.out.println("Pseudo : " + user.getPseudo());
-            System.out.println("Role : " + user.getRole());
-        } else{
-            System.out.println("Aucun utilisateur trouvé avec cet email.");
-        }
-    }
-
-    public static void updateUser() throws SQLException {
-        System.out.println("Mise à jour des informations d'un utilisateur :");
-        System.out.println("Entrez l'email de l'utilisateur à mettre à jour : ");
-        String email = scanner.nextLine();
-
-        User user = UserManager.getUserByEmail(email);
-
-        if (user != null){
-            System.out.print("Entrez le nouveau pseudo de l'utilisateur : ");
-            String newPseudo = scanner.nextLine();
-            System.out.print("Entrez le nouveau mot de passe de l'utilisateur : ");
-            String newPassword = scanner.nextLine();
-            System.out.print("Entrez le nouveau role de l'utilisateur : ");
-            String newRole = scanner.nextLine();
-
-            // Mise à jour des infos utilisateur
-            user.setPseudo(newPseudo);
-            user.setPassword(newPassword);
-            user.setRole(newRole);
-
-            // Appel de la méthode de gestion pour la mise à jour de l'utilisateur
-            UserManager.updateUser(user);
-            System.out.println("Utilisateur mis à jour avec succès !");
-        } else{
-            System.out.println("Aucun utilisateur trouvé avec cet email");
-        }
-    }
-
-    public static void deleteUser() throws SQLException {
-        System.out.println("Suppression d'un utilisateur :");
-        System.out.print("Entrez l'email de l'utilisateur à supprimer : ");
-        String email = scanner.nextLine();
-
-        // Appel de la méthode pour récupérer l'utilisateur par email
-        User user = UserManager.getUserByEmail(email);
-
-        if (user != null){
-            UserManager.deleteUser(user);
-            System.out.println("Utilisateur supprimé avec succès");
-        }else{
-            System.out.println("Aucun utilisateur trouvé avec cet email.");
-        }
-    }
-
-    public static void mainMenu() throws SQLException {
-        boolean exit = false;
-        while(!exit){
-            System.out.println("=== Menu Principal ===");
-            System.out.println("1. Créer un nouvel utilisateur");
-            System.out.println("2. Afficher les détails d'un utilisateur");
-            System.out.println("3. Mettre à jour un utilisateur");
-            System.out.println("4. Supprimer un utilisateur");
-            System.out.println("5. Quitter");
-
-            System.out.print("Entrez votre choix : ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 1:
-                    createUser();
-                    break;
-                case 2:
-                    displayUserDetails();
-                    break;
-                case 3:
-                    updateUser();
-                    break;
-                case 4:
-                    deleteUser();
-                    break;
-                case 5:
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Choix invalide. Veuillez choisir une option valide.");
-            }
-        }
-    }
-}
-*/
