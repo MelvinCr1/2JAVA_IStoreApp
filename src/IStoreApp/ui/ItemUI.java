@@ -4,10 +4,14 @@
 
 package IStoreApp.ui;
 
+import IStoreApp.model.Item;
+import IStoreApp.service.ItemManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class ItemUI extends JFrame {
     private static final JTextField nameField = new JTextField(20);
@@ -43,8 +47,11 @@ public class ItemUI extends JFrame {
                 int quantity = Integer.parseInt(quantityField.getText());
 
                 // Création d'un nouvel article
-                // ItemManager.createItem(new Item(name, price, quantity));
-                JOptionPane.showMessageDialog(ItemUI.this, "Pas encore développé");
+                try {
+                    ItemManager.createItem(new Item(name, price, quantity));
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         panel.add(createItemButton);

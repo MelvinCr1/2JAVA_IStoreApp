@@ -29,7 +29,7 @@ public class ItemAccess {
             statement.executeUpdate();
         }
     }
-
+   /*
     // Méthode pour mettre à jour les informations d'un article dans la base de données
     public static void updateItem(Item item) throws SQLException {
         String query = "UPDATE items SET name = ?, price = ?, quantity = ? WHERE id = ?";
@@ -40,7 +40,7 @@ public class ItemAccess {
             statement.setInt(4, item.getId());
             statement.executeUpdate();
         }
-    }
+    }*/
 
     // Méthode pour supprimer un article de la base de données
     public static void deleteItem(Item item) throws SQLException {
@@ -61,7 +61,7 @@ public class ItemAccess {
                     String name = resultSet.getString("name");
                     double price = resultSet.getDouble("price");
                     int quantity = resultSet.getInt("quantity");
-                    return new Item(itemId, name, price, quantity);
+                    return new Item(name, price, quantity);
                 }
             }
         }

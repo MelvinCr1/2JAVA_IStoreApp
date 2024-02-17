@@ -1,10 +1,13 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+// --------------------
+
 package IStoreApp.ui;
 
 import IStoreApp.model.User;
 import IStoreApp.service.UserManager;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

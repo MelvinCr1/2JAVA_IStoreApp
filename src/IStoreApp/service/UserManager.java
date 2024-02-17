@@ -71,4 +71,19 @@ public class UserManager {
         // Si user est différent de null, cela signifie qu'un utilisateur avec cet email existe
         return user != null;
     }
+
+    // Méthode pour récupérer l'utilisateur actuellement connecté
+    public static User getCurrentUser(String sessionId) throws SQLException {
+        // Récupérer l'email de l'utilisateur à partir de l'identifiant de session
+        String userEmail = SessionManager.getUserEmail(sessionId);
+
+        // Vérifier si l'email existe dans la session
+        if (userEmail != null) {
+            // Si oui, récupérer l'utilisateur depuis la base de données en utilisant l'email
+            return UserAccess.getUserByEmail(userEmail);
+        } else {
+            // Si l'email n'est pas trouvé dans la session, retourner null
+            return null;
+        }
+    }
 }

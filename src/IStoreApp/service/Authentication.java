@@ -37,4 +37,18 @@ public class Authentication {
             return false;
         }
     }
+
+    public static boolean isCurrentUserAdmin(String sessionId) {
+        try {
+            // Récupérer l'utilisateur actuellement connecté
+            User currentUser = UserManager.getCurrentUser(sessionId);
+
+            // Vérifier si l'utilisateur existe et si son rôle est "admin"
+            return currentUser != null && currentUser.getRole().equalsIgnoreCase("admin");
+        } catch (SQLException e) {
+            // Gérer l'exception liée à l'accès à la base de données
+            System.err.println("Erreur lors de la vérification du rôle de l'utilisateur : " + e.getMessage());
+            return false;
+        }
+    }
 }

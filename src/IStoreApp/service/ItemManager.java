@@ -45,7 +45,7 @@ public class ItemManager {
             return;
         }
         // Appeler la méthode d'accès aux données pour mettre à jour l'article
-        IStoreApp.dataAccess.ItemAccess.updateItem(item);
+        //IStoreApp.dataAccess.ItemAccess.updateItem(item);
         System.out.println("Article mis à jour avec succès !");
     }
 

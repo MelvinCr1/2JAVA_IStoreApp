@@ -1,9 +1,11 @@
 // Copyright (C) 2024 by CUREAU Melvin
 // Released under the terms of the Creative Commons Licence
+// --------------------
 
 package IStoreApp.ui;
 
 import IStoreApp.service.Authentication;
+import IStoreApp.service.SessionManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -62,9 +64,12 @@ public class LoginUI extends JFrame {
         String password = new String(passwordField.getPassword());
 
         if (Authentication.authenticate(email, password)) {
+            // Démarrer une nouvelle session pour l'utilisateur
+            String sessionId = SessionManager.startSession(email);
+
             JOptionPane.showMessageDialog(this, "Authentification réussie !");
             // Redirection vers le menu principal
-            UIManager.main(new String[]{});
+            UIManager.main(sessionId);
             dispose(); // Fermer la fenêtre
         } else {
             int option = JOptionPane.showConfirmDialog(this, "Erreur : Email ou mot de passe incorrect. Voulez-vous réessayer ?", "Erreur d'authentification", JOptionPane.YES_NO_OPTION);
