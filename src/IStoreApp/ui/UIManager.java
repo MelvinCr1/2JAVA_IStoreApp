@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import IStoreApp.service.Authentication;
 import IStoreApp.service.SessionManager;
 
 public class UIManager extends JFrame {
@@ -75,7 +74,6 @@ public class UIManager extends JFrame {
 
         // Ajout du panneau au cadre principal
         add(panel);
-
         // Centrer la fenêtre
         setLocationRelativeTo(null);
     }
