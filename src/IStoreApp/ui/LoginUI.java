@@ -16,7 +16,7 @@ public class LoginUI extends JFrame {
 
     public LoginUI() {
         setTitle("Connexion");
-        setSize(300, 200);
+        setSize(320, 220);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centrer la fenêtre
 
@@ -42,8 +42,7 @@ public class LoginUI extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 RegisterUI registerUI = new RegisterUI();
-                //registerUI.setVisible(true);
-                dispose(); // Ferme la fenêtre de connexion
+                registerUI.setVisible(true);
             }
         });
 
