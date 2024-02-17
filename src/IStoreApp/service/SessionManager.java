@@ -15,6 +15,8 @@ public class SessionManager {
     public static String startSession(String userEmail) {
         String sessionId = generateSessionId();
         sessions.put(sessionId, userEmail);
+        // Enregistrer le début de la session dans les logs
+        Logger.log("Session started - User: " + userEmail + ", Session ID: " + sessionId);
         return sessionId;
     }
 
@@ -25,6 +27,9 @@ public class SessionManager {
 
     // Méthode pour mettre fin à une session
     public static void endSession(String sessionId) {
+        // Enregistrer la fin de la session dans les logs
+        String userEmail = sessions.get(sessionId);
+        Logger.log("Session ended - User: " + userEmail + ", Session ID: " + sessionId);
         sessions.remove(sessionId);
     }
 
@@ -33,4 +38,3 @@ public class SessionManager {
         return UUID.randomUUID().toString();
     }
 }
-
