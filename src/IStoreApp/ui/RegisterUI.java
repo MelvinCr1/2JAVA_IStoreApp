@@ -1,6 +1,7 @@
 package IStoreApp.ui;
 
 import IStoreApp.model.User;
+import IStoreApp.service.UserManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,9 +47,26 @@ public class RegisterUI extends JFrame {
                 String password = new String(passwordField.getPassword());
                 String role = roleField.getText();
 
+                // Vérification si tous les champs sont remplis
+                if (email.isEmpty() || pseudo.isEmpty() || password.isEmpty() || role.isEmpty()) {
+                    JOptionPane.showMessageDialog(RegisterUI.this, "Veuillez remplir tous les champs.");
+                    return;
+                }
+
+                // Vérifier si l'email est déjà utilisé
+                try {
+                    if (IStoreApp.service.UserManager.isUserExists(email)) {
+                        JOptionPane.showMessageDialog(RegisterUI.this, "Cet email est déjà associé à un compte.");
+                        return;
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                // Vérification si l'email est Whitelist
                 try {
                     if (isEmailWhitelisted(email)) {
-                        IStoreApp.service.UserManager.createUser(new User(email, pseudo, password, role));
+                        UserManager.createUser(new User(email, pseudo, password, role));
                         JOptionPane.showMessageDialog(RegisterUI.this, "Compte créé avec succès !");
                         dispose(); // Ferme la fenêtre
                     } else {

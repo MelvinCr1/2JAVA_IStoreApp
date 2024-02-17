@@ -63,4 +63,12 @@ public class UserManager {
         IStoreApp.dataAccess.UserAccess.deleteUser(user);
         System.out.println("Utilisateur supprimé avec succès !");
     }
+
+    // Méthode pour vérifier si un utilisateur existe avec l'email donné
+    public static boolean isUserExists(String email) throws SQLException {
+        // Utiliser l'accès aux données pour vérifier si l'utilisateur existe
+        User user = UserAccess.getUserByEmail(email);
+        // Si user est différent de null, cela signifie qu'un utilisateur avec cet email existe
+        return user != null;
+    }
 }
