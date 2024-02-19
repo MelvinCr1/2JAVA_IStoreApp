@@ -68,6 +68,13 @@ Before starting the installation, make sure your system has the following:
 
 Make sure your MySQL server is running before starting the application.
 
+By default upon first connection, an 'admin/admin' account will be available.
+
+This default administrator account allows quick access to administrative privileges without the need for manual registration.
+However, it is important to note that using default "admin/admin" credentials poses security risks if not changed immediately after installation.
+
+It is strongly recommended to change the default credentials after initial setup is complete to improve security.
+
 
 ## 4. Rendering
 
