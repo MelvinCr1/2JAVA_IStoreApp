@@ -66,8 +66,6 @@ The rendering of the project containing:
 - Justification of the choice of language and graphic library
 - Rationale for splitting code into multiple packages
 - Code documentation
-- Presentation of algorithms for managing the installation of barriers
-- Explanation of the process used to make several computers communicate during the network game
 
 
 ## Built With
