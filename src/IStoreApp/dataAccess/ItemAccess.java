@@ -21,15 +21,17 @@ public class ItemAccess {
 
     // Méthode pour créer un nouvel article dans la base de données
     public static void createItem(Item item) throws SQLException {
-        String query = "INSERT INTO items (name, price, quantity) VALUES (?, ?, ?)";
+        String query = "INSERT INTO items (name, price, quantity, store) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, item.getName());
             statement.setDouble(2, item.getPrice());
             statement.setInt(3, item.getQuantity());
+            statement.setString(4,item.getStore());
             statement.executeUpdate();
         }
     }
 
+   /*
     // Méthode pour mettre à jour les informations d'un article dans la base de données
     public static void updateItem(Item item) throws SQLException {
         String query = "UPDATE items SET name = ?, price = ?, quantity = ? WHERE id = ?";
@@ -40,7 +42,7 @@ public class ItemAccess {
             statement.setInt(4, item.getId());
             statement.executeUpdate();
         }
-    }
+    }*/
 
     // Méthode pour supprimer un article de la base de données
     public static void deleteItem(Item item) throws SQLException {
@@ -61,7 +63,8 @@ public class ItemAccess {
                     String name = resultSet.getString("name");
                     double price = resultSet.getDouble("price");
                     int quantity = resultSet.getInt("quantity");
-                    return new Item(itemId, name, price, quantity);
+                    String store = resultSet.getString("store");
+                    return new Item(name, price, quantity, store);
                 }
             }
         }

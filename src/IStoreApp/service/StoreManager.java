@@ -8,6 +8,8 @@ import IStoreApp.model.Store;
 import IStoreApp.dataAccess.StoreAccess;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StoreManager {
     private static final StoreAccess storeAccess;
@@ -22,9 +24,9 @@ public class StoreManager {
 
     // Méthode pour créer un nouveau magasin
     public static void createStore(Store store) throws SQLException {
-        // Vérification si le magasin existe déja
+        // Vérification si le magasin existe déjà
         if (getStoreById(store.getId()) != null) {
-            System.out.println("Erreur : Un magasin avec cet ID existe déja.");
+            System.out.println("Erreur : Un magasin avec cet ID existe déjà.");
             return;
         }
         // Appel de la méthode d'accès aux données pour créer le magasin
@@ -54,7 +56,7 @@ public class StoreManager {
         // Vérification si le magasin existe
         Store existingStore = getStoreById(store.getId());
         if (existingStore == null) {
-            System.out.println("Erreur : ce magasin n'existe pas.");
+            System.out.println("Erreur : Ce magasin n'existe pas.");
             return;
         }
         storeAccess.deleteStore(store);

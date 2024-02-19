@@ -44,11 +44,20 @@ public class InventoryAccess {
 
     // Méthode pour mettre à jour les informations d'un inventaire dans la base de données
     public void updateInventory(Inventory inventory) throws SQLException {
-        // Implémentez la logique pour mettre à jour un inventaire dans la base de données
+        String query = "UPDATE inventories SET store_id = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, inventory.getStoreId());
+            statement.setInt(2, inventory.getId());
+            statement.executeUpdate();
+        }
     }
 
     // Méthode pour supprimer un inventaire de la base de données
     public void deleteInventory(Inventory inventory) throws SQLException {
-        // Implémentez la logique pour supprimer un inventaire de la base de données
+        String query = "DELETE FROM inventories WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, inventory.getId());
+            statement.executeUpdate();
+        }
     }
 }

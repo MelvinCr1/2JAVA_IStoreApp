@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8bf4ffee-f5e3-45d0-a01f-d3fe78ade7d7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/istoreapp_sql.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2JAVA_IStoreApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_8_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_8_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_2java.iml" beforeDir="false" afterPath="$PROJECT_DIR$/_2java.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/documentation_technique.docx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/documentation_technique.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/dataAccess/AdminAccess.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/dataAccess/DatabaseManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/dataAccess/InventoryAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/dataAccess/InventoryAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/dataAccess/ItemAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/dataAccess/ItemAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/dataAccess/StoreAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/dataAccess/StoreAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/dataAccess/UserAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/dataAccess/UserAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/model/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/model/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/model/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/model/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/model/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/service/AdminManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/service/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/service/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/service/InventoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/service/InventoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/service/ItemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/service/ItemManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/service/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/service/StoreManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/service/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/service/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/ui/AdminUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/ui/AdminUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/ui/InventoryUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/ui/InventoryUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/ui/ItemUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/ui/ItemUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/ui/LoginUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/ui/LoginUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/ui/StoreUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/ui/StoreUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/ui/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/ui/UIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IStoreApp/ui/UserUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IStoreApp/ui/UserUI.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2cZuql5NN0h2pqsyW4u2rImEDEc" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/melvi/Documents/GitHub/2JAVA_IStoreApp/src/junit-4.12.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8bf4ffee-f5e3-45d0-a01f-d3fe78ade7d7" name="Changes" comment="" />
+      <created>1708331617667</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708331617667</updated>
+      <workItem from="1708331621474" duration="976000" />
+      <workItem from="1708332899645" duration="16983000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -17,8 +17,8 @@ public class InventoryUI extends JFrame {
 
     public InventoryUI() {
         setTitle("Gestion des inventaires");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(800, 300);
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 1, 10, 10)); // 6 lignes, 1 colonne, espacement de 10 pixels
@@ -77,7 +77,6 @@ public class InventoryUI extends JFrame {
         JButton exitButton = new JButton("Quitter");
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Au revoir !");
                 System.exit(0);
             }
         });
@@ -90,7 +89,7 @@ public class InventoryUI extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public static void main(/*String[] args*/) {
+    public static void main() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 InventoryUI inventoryUI = new InventoryUI();

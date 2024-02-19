@@ -4,60 +4,178 @@
 
 package IStoreApp.ui;
 
+import IStoreApp.model.Store;
+import IStoreApp.service.Authentication;
+import IStoreApp.service.StoreManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class StoreUI extends JFrame {
-    public StoreUI() {
-        setTitle("Store Management System");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+    private static final JTextField idField = new JTextField(20);
+    private static final JTextField nameField = new JTextField(20);
+    private String sessionId;
 
-        // Création d'un panneau pour contenir les boutons
+    public StoreUI(String sessionId) {
+        this.sessionId = sessionId;
+
+        setTitle("Gestion des utilisateurs");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 300);
+
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(4, 1, 10, 10)); // 4 lignes, 1 colonne, espacement de 10 pixels
+        panel.setLayout(new GridLayout(5, 1, 10, 10)); // 5 lignes, 1 colonne, espacement de 10 pixels
 
-        // Bouton pour créer un nouveau magasin
-        JButton createButton = new JButton("Créer un nouveau magasin");
-        createButton.addActionListener(new ActionListener() {
+        panel.add(new JLabel("ID du magasin :"));
+        panel.add(idField);
+
+        panel.add(new JLabel("Nom du magasin :"));
+        panel.add(nameField);
+
+        if (Authentication.isCurrentUserAdmin(sessionId)){
+            // Bouton pour créer un nouveau magasin
+            JButton createStoreButton = new JButton("Créer un nouveau magasin");
+            createStoreButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    int id = Integer.parseInt(idField.getText());
+                    String name = nameField.getText();
+
+                    // Vérifier si l'un des champs est vide
+                    if(name.isEmpty()) {
+                        JOptionPane.showMessageDialog(StoreUI.this, "Veuillez remplir tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    try {
+                        IStoreApp.service.StoreManager.createStore(new Store(name, id));
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            });
+            panel.add(createStoreButton);
+
+            // Bouton pour mettre à jour un magasin
+            JButton updateStoreButton = new JButton("Mettre à jour un magasin");
+            updateStoreButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    String id = idField.getText();
+                    String newName = nameField.getText();
+
+                    // Vérification si les champs sont vides
+                    if (id.isEmpty() || newName.isEmpty()) {
+                        JOptionPane.showMessageDialog(StoreUI.this, "Veuillez remplir tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    try {
+                        // Récupérer le magasin à mettre à jour par son ID
+                        Store store = StoreManager.getStoreById(Integer.parseInt(id));
+
+                        // Vérifier si le magasin existe
+                        if (store == null) {
+                            JOptionPane.showMessageDialog(StoreUI.this, "Aucun magasin trouvé avec cet ID.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+
+                        // Mettre à jour le nom du magasin
+                        store.setName(newName);
+
+                        // Appeler la méthode de gestion pour mettre à jour le magasin
+                        StoreManager.updateStore(store);
+
+                        // Afficher un message de réussite
+                        JOptionPane.showMessageDialog(StoreUI.this, "Magasin mis à jour avec succès !");
+                    } catch (NumberFormatException ex) {
+                        // Gérer l'exception si l'ID n'est pas un entier valide
+                        JOptionPane.showMessageDialog(StoreUI.this, "Veuillez saisir un ID valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    } catch (SQLException ex) {
+                        // Gérer l'exception liée à l'accès à la base de données
+                        throw new RuntimeException(ex);
+                    }
+                }
+            });
+            panel.add(updateStoreButton);
+
+            // Bouton pour supprimer un magasin
+            JButton deleteStoreButton = new JButton("Supprimer un magasin");
+            deleteStoreButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    int id = Integer.parseInt(idField.getText());
+
+                    // Vérifier si les champs sont vides
+                    if (id == 0) {
+                        JOptionPane.showMessageDialog(StoreUI.this, "Veuillez saisir un ID valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    try {
+                        // Récupérer le magasin à supprimer par son ID
+                        Store store = StoreManager.getStoreById(id);
+
+                        // Vérifier si le magasin existe
+                        if (store == null) {
+                            JOptionPane.showMessageDialog(StoreUI.this, "Aucun magasin trouvé avec cet ID.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+
+                        // Appeler la méthode de gestion pour supprimer le magasin
+                        StoreManager.deleteStore(store);
+
+                        // Afficher un message de réussite
+                        JOptionPane.showMessageDialog(StoreUI.this, "Magasin supprimé avec succès !");
+                    } catch (NumberFormatException ex) {
+                        // Gérer l'exception si l'ID n'est pas un entier valide
+                        JOptionPane.showMessageDialog(StoreUI.this, "Veuillez saisir un ID valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    } catch (SQLException ex) {
+                        // Gérer l'exception liée à l'accès à la base de données
+                        throw new RuntimeException(ex);
+                    }
+                }
+            });
+            panel.add(deleteStoreButton);
+        }
+
+        // Boutton pour afficher les détails d'un magasin
+        JButton displayStoreButton = new JButton("Afficher les détails d'un magasin");
+        displayStoreButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Appeler la méthode pour créer un magasin
-                createStore();
+                // Récupérer l'id du magasin depuis le champ de saisie
+                String id = idField.getText();
+
+                try {
+                    // Récupérer le magasin depuis la base de données en utilisant son email
+                    Store store = StoreManager.getStoreById(Integer.parseInt(id));
+
+                    // Vérifier si le magasin existe
+                    if (store != null) {
+                        // Afficher les détails du magasin dans une boîte de dialogue
+                        JOptionPane.showMessageDialog(null, "Détails du magasin :\n" +
+                                "Id: " + store.getId() + "\n" +
+                                "Nom: " + store.getName());
+                    } else {
+                        // Afficher un message si le magasin n'existe pas
+                        JOptionPane.showMessageDialog(null, "Le magasin avec l'id " + id + " n'existe pas.");
+                    }
+                } catch (SQLException ex) {
+                    // Gérer les exceptions liées à l'accès à la base de données
+                    throw new RuntimeException(ex);
+                }
             }
         });
-        panel.add(createButton);
+        panel.add(displayStoreButton);
 
-        // Bouton pour afficher les détails d'un magasin
-        JButton displayButton = new JButton("Afficher les détails d'un magasin");
-        displayButton.addActionListener(new ActionListener() {
+        // Bouton pour quitter l'application
+        JButton exitButton = new JButton("Quitter");
+        exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Appeler la méthode pour afficher les détails d'un magasin
-                displayStoreDetails();
+                System.exit(0);
             }
         });
-        panel.add(displayButton);
-
-        // Bouton pour mettre à jour un magasin
-        JButton updateButton = new JButton("Mettre à jour un magasin");
-        updateButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Appeler la méthode pour mettre à jour un magasin
-                updateStore();
-            }
-        });
-        panel.add(updateButton);
-
-        // Bouton pour supprimer un magasin
-        JButton deleteButton = new JButton("Supprimer un magasin");
-        deleteButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Appeler la méthode pour supprimer un magasin
-                deleteStore();
-            }
-        });
-        panel.add(deleteButton);
+        panel.add(exitButton);
 
         // Ajout du panneau au cadre principal
         add(panel);
@@ -66,155 +184,12 @@ public class StoreUI extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    // Méthodes pour gérer les actions du magasin
-    private void createStore() {
-        JOptionPane.showMessageDialog(this, "Fonctionnalité non implémentée : Créer un magasin");
-    }
-
-    private void displayStoreDetails() {
-        JOptionPane.showMessageDialog(this, "Fonctionnalité non implémentée : Afficher les détails d'un magasin");
-    }
-
-    private void updateStore() {
-        JOptionPane.showMessageDialog(this, "Fonctionnalité non implémentée : Mettre à jour un magasin");
-    }
-
-    private void deleteStore() {
-        JOptionPane.showMessageDialog(this, "Fonctionnalité non implémentée : Supprimer un magasin");
-    }
-
-    public static void main(/*String[] args*/) {
+    public static void main(String sessionId) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                StoreUI storeUI = new StoreUI();
+                StoreUI storeUI = new StoreUI(sessionId);
                 storeUI.setVisible(true);
             }
         });
     }
 }
-
-
-/* VERSION CONSOLE
-
-
-
-package IStoreApp.ui;
-
-import java.util.Scanner;
-import IStoreApp.model.Store;
-import IStoreApp.service.StoreManager;
-
-public class StoreUI {
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void createStore() {
-        System.out.println("Création d'un nouveau magasin :");
-        System.out.print("Entrez le nom du magasin : ");
-        String name = scanner.nextLine();
-
-        // Création du nouvel objet Store avec le nom saisi
-        Store newStore = new Store(name);
-
-        // Appel de la méthode de gestion pour créer le magasin
-        StoreManager.createStore(newStore);
-    }
-
-    public static void displayStoreDetails() {
-        System.out.println("Affichage des détails d'un magasin :");
-        System.out.print("Entrez l'ID du magasin : ");
-        int storeId = scanner.nextInt();
-        scanner.nextLine(); // Pour consommer la nouvelle ligne
-
-        // Appel de la méthode de gestion pour récupérer le magasin par son ID
-        Store store = StoreManager.getStoreById(storeId);
-
-        if (store != null) {
-            System.out.println("Détails du magasin :");
-            System.out.println("ID : " + store.getId());
-            System.out.println("Nom : " + store.getName());
-        } else {
-            System.out.println("Aucun magasin trouvé avec cet ID.");
-        }
-    }
-
-    public static void updateStore() {
-        System.out.println("Mise à jour des informations d'un magasin :");
-        System.out.print("Entrez l'ID du magasin à mettre à jour : ");
-        int storeId = scanner.nextInt();
-        scanner.nextLine();
-
-        // Appel de la méthode de gestion pour récupérer le magasin par son ID
-        Store store = StoreManager.getStoreById(storeId);
-
-        if (store != null) {
-            System.out.print("Entrez le nouveau nom du magasin : ");
-            String newName = scanner.nextLine();
-
-            // Mise à jour des infos du magasin
-            store.setName(newName);
-
-            // Appel de la méthode de gestion pour mettre à jour le magasin
-            StoreManager.updateStore(store);
-            System.out.println("Magasin mis à jour avec succès !");
-        } else {
-            System.out.println("Aucun magasin trouvé avec cet ID.");
-        }
-    }
-
-    public static void deleteStore() {
-        System.out.println("Suppression d'un magasin :");
-        System.out.print("Entrez l'ID du magasin à supprimer : ");
-        int storeId = scanner.nextInt();
-        scanner.nextLine(); // Pour consommer la nouvelle ligne
-
-        // Appeler la méthode de gestion pour récupérer le magasin par son ID
-        Store store = StoreManager.getStoreById(storeId);
-
-        if (store != null) {
-            // Appeler la méthode de gestion pour supprimer le magasin
-            StoreManager.deleteStore(store);
-            System.out.println("Magasin supprimé avec succès !");
-        } else {
-            System.out.println("Aucun magasin trouvé avec cet ID.");
-        }
-    }
-
-    public static void mainMenuStore() {
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("=== Menu Principal Magasin ===");
-            System.out.println("1. Créer un nouveau magasin");
-            System.out.println("2. Afficher les détails d'un magasin");
-            System.out.println("3. Mettre à jour un magasin");
-            System.out.println("4. Supprimer un magasin");
-            System.out.println("5. Quitter");
-
-            System.out.print("Entrez votre choix : ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Pour consommer la nouvelle ligne
-
-            switch (choice) {
-                case 1:
-                    createStore();
-                    break;
-                case 2:
-                    displayStoreDetails();
-                    break;
-                case 3:
-                    updateStore();
-                    break;
-                case 4:
-                    deleteStore();
-                    break;
-                case 5:
-                    exit = true;
-                    System.out.println("Au revoir !");
-                    break;
-                default:
-                    System.out.println("Choix invalide. Veuillez choisir une option valide.");
-            }
-        }
-    }
-}
-
- */
