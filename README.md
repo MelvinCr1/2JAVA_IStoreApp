@@ -63,13 +63,10 @@ Before starting the installation, make sure your system has the following:
 - Git for cloning the project repository.
 
 ### Installation
-1- Clone this Git repository to your local machine:
-2- Set up the database:
-
-
+1- Clone this Git repository to your local machine
+2- Set up the database
 
 Make sure your MySQL server is running before starting the application.
-
 
 
 ## 4. Rendering
