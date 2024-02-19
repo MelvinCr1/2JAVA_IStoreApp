@@ -52,9 +52,33 @@ Store management
     - View (for administrator and employee with access) a list of everyone with access to the store
 
 
-## 3. Rendering
+## 3. Installation and Configuration Guide
 
-The rendering of the project containing:
+### Prerequisites
+Before starting the installation, make sure your system has the following:
+
+- Java Development Kit (JDK) version 11 or higher.
+- MySQL Server or another relational database management system.
+- Apache Maven for dependency management and project building.
+- Git for cloning the project repository.
+
+### Installation
+- Clone this Git repository to your local machine
+- Set up the database
+
+Make sure your MySQL server is running before starting the application.
+
+By default upon first connection, an 'admin/admin' account will be available.
+
+This default administrator account allows quick access to administrative privileges without the need for manual registration.
+However, it is important to note that using default "admin/admin" credentials poses security risks if not changed immediately after installation.
+
+It is strongly recommended to change the default credentials after initial setup is complete to improve security.
+
+
+## 4. Rendering
+
+#### The rendering of the project containing:
 - The source code
 - Additional files (sounds, images, etc.)
 - Technical documentation
@@ -66,8 +90,6 @@ The rendering of the project containing:
 - Justification of the choice of language and graphic library
 - Rationale for splitting code into multiple packages
 - Code documentation
-- Presentation of algorithms for managing the installation of barriers
-- Explanation of the process used to make several computers communicate during the network game
 
 
 ## Built With
@@ -75,13 +97,13 @@ The rendering of the project containing:
 * [Intellij IDEA 2023.3.3] - The IDE used
 
 
-## 4. Auteurs
+## 5. Authors
 
 * **Melvin Cureau** - *Initial work* - [MelvinCureau](https://github.com/MelvinCr1)
 
 See also the list of [contributors](https://github.com/MelvinCr1/2JAVA_IStoreApp/contributors) who participated in this project.
 
 
-## 5. Licence
+## 6. Licence
 
 This project is under the MIT license. See the LICENSE file for more details.
