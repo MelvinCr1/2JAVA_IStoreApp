@@ -50,3 +50,11 @@
 2024-02-19 19:32:14 - Session started - User: melvin@admin.com, Session ID: 8d12652b-5732-4828-87ee-42000da6742f
 2024-02-19 19:32:47 - Session started - User: melvin@admin.com, Session ID: 2f1eddb6-d061-4374-9f90-37a8dedabe92
 2024-02-19 19:33:01 - Session started - User: melvin@admin.com, Session ID: 7de2f66e-734a-47b4-9aba-ae117322d712
+2024-02-19 19:39:54 - Session started - User: melvin@admin.com, Session ID: 171357a6-2e27-40d2-8262-b860d7b9fec4
+2024-02-19 19:41:01 - Session ended - User: melvin@admin.com, Session ID: 171357a6-2e27-40d2-8262-b860d7b9fec4
+2024-02-19 19:43:26 - Session started - User: melvin@admin.com, Session ID: 8c0bd711-5c8f-4edd-ba0d-33f9a406887e
+2024-02-19 19:43:47 - Session ended - User: melvin@admin.com, Session ID: 8c0bd711-5c8f-4edd-ba0d-33f9a406887e
+2024-02-19 19:43:54 - Session started - User: axel@admin.com, Session ID: f0e733a7-dbd0-4d72-92c3-2bdbfe27805f
+2024-02-19 19:44:34 - Session ended - User: axel@admin.com, Session ID: f0e733a7-dbd0-4d72-92c3-2bdbfe27805f
+2024-02-19 19:44:40 - Session started - User: melvin@admin.com, Session ID: f07c840c-f381-4020-9a0e-a4898f002b96
+2024-02-19 19:45:00 - Session started - User: axel@admin.com, Session ID: 9233729c-1095-42be-a087-9fa31b262856

@@ -5,6 +5,7 @@
 package IStoreApp.ui;
 
 import IStoreApp.model.User;
+import IStoreApp.service.Authentication;
 import IStoreApp.service.PasswordManager;
 import IStoreApp.service.UserManager;
 
@@ -40,8 +41,11 @@ public class UserUI extends JFrame {
         panel.add(new JLabel("Mot de passe de l'utilisateur :"));
         panel.add(passwordField);
 
-        panel.add(new JLabel("Rôle de l'utilisateur :"));
-        panel.add(roleComboBox);
+        // Vérifier si l'utilisateur est un administrateur pour afficher le label et la liste déroulante du rôle
+        if (Authentication.isCurrentUserAdmin(sessionId)) {
+            panel.add(new JLabel("Rôle de l'utilisateur :"));
+            panel.add(roleComboBox);
+        }
 
         // Bouton pour créer un nouvel utilisateur
         JButton createUserButton = new JButton("Créer un nouvel utilisateur");
@@ -50,7 +54,12 @@ public class UserUI extends JFrame {
                 String email = emailField.getText();
                 String pseudo = pseudoField.getText();
                 String password = new String(passwordField.getPassword());
-                String role = (String) roleComboBox.getSelectedItem();
+                String role = "user"; // Rôle par défaut
+
+                // Si l'utilisateur est un administrateur, récupérer le rôle à partir de la liste déroulante
+                if (Authentication.isCurrentUserAdmin(sessionId)) {
+                    role = (String) roleComboBox.getSelectedItem();
+                }
 
                 // Vérifier si l'un des champs est vide
                 if(email.isEmpty() || pseudo.isEmpty() || password.isEmpty()) {
@@ -59,7 +68,9 @@ public class UserUI extends JFrame {
                 }
 
                 try {
-                    IStoreApp.service.UserManager.createUser(new User(email, pseudo, password, role));
+                    // Hasher le mot de passe avant de le stocker dans la base de données
+                    String hashedPassword = PasswordManager.hashPassword(password);
+                    IStoreApp.service.UserManager.createUser(new User(email, pseudo, hashedPassword, role));
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
