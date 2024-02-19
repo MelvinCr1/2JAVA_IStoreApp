@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import IStoreApp.Main;
 import IStoreApp.model.Item;
@@ -58,6 +59,24 @@ public class ItemAccess {
         String query = "SELECT * FROM items WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, itemId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String name = resultSet.getString("name");
+                    double price = resultSet.getDouble("price");
+                    int quantity = resultSet.getInt("quantity");
+                    String store = resultSet.getString("store");
+                    return new Item(name, price, quantity, store);
+                }
+            }
+        }
+        return null;
+    }
+
+    // Méthode pour récupérer un article par son identifiant
+    public Item getItemsByStore(int storeName) throws SQLException {
+        String query = "SELECT * FROM items WHERE store = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, storeName);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     String name = resultSet.getString("name");

@@ -20,7 +20,7 @@ public class ItemUI extends JFrame {
     private static final JTextField storeField = new JTextField(20);
 
     public ItemUI() {
-        setTitle("Gestion des articles");
+        setTitle("Gestion Articles");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 300);
 

@@ -16,7 +16,7 @@ public class InventoryUI extends JFrame {
     private static final JTextField quantityAdjustmentField = new JTextField(20);
 
     public InventoryUI() {
-        setTitle("Gestion des inventaires");
+        setTitle("Gestion Inventaire");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 300);
 

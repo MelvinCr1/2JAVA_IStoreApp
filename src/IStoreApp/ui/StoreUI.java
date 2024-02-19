@@ -22,7 +22,7 @@ public class StoreUI extends JFrame {
     public StoreUI(String sessionId) {
         this.sessionId = sessionId;
 
-        setTitle("Gestion des utilisateurs");
+        setTitle("Gestion Magasin");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 300);
 

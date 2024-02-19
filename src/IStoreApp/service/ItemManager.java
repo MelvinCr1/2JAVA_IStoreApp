@@ -8,6 +8,7 @@ import IStoreApp.model.Item;
 import IStoreApp.dataAccess.ItemAccess;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemManager {
@@ -61,7 +62,5 @@ public class ItemManager {
         System.out.println("Article supprimé avec succès !");
     }
 
-    public static List<Item> getAllItems() {
-        return null;
-    }
+
 }

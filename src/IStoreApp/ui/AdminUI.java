@@ -15,7 +15,7 @@ public class AdminUI extends JFrame {
     private static final JTextField emailField = new JTextField(20);
 
     public AdminUI() {
-        setTitle("Gestion de la Whitelist");
+        setTitle("Gestion Whitelist");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 300);
 
