@@ -34,22 +34,22 @@ public class UIManager extends JFrame {
         }
 
         // Bouton pour la gestion des utilisateurs
-        JButton userButton = new JButton("Gestion des utilisateurs");
+        JButton userButton = new JButton("Gestion utilisateur");
         userButton.addActionListener(e -> UserUI.main(sessionId));
         panel.add(userButton);
 
         // Bouton pour la gestion des magasins
-        JButton storeButton = new JButton("Gestion des magasins");
+        JButton storeButton = new JButton("Gestion magasin");
         storeButton.addActionListener(e -> StoreUI.main(sessionId));
         panel.add(storeButton);
 
         // Bouton pour la gestion des inventaires
-        JButton inventoryButton = new JButton("Gestion des inventaires");
+        JButton inventoryButton = new JButton("Gestion inventaire");
         inventoryButton.addActionListener(e -> InventoryUI.main());
         panel.add(inventoryButton);
 
         // Bouton pour la gestion des articles
-        JButton itemButton = new JButton("Gestion des articles");
+        JButton itemButton = new JButton("Gestion article");
         itemButton.addActionListener(e -> ItemUI.main());
         panel.add(itemButton);
 

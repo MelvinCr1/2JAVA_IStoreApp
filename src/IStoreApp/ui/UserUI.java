@@ -5,6 +5,7 @@
 package IStoreApp.ui;
 
 import IStoreApp.model.User;
+import IStoreApp.service.PasswordManager;
 import IStoreApp.service.UserManager;
 
 import javax.swing.*;
@@ -105,13 +106,21 @@ public class UserUI extends JFrame {
                 String newPassword = new String(passwordField.getPassword());
                 String newRole = roleField.getText();
                 User user = null;
+
+                // Vérifier si l'un des champs est vide
+                if(email.isEmpty() || newPseudo.isEmpty() || newPassword.isEmpty()) {
+                    JOptionPane.showMessageDialog(UserUI.this, "Veuillez remplir tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 try {
                     user = UserManager.getUserByEmail(email);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
                 user.setPseudo(newPseudo);
-                user.setPassword(newPassword);
+                String hashedPassword = PasswordManager.hashPassword(newPassword);
+                user.setPassword(hashedPassword);
                 user.setRole(newRole);
                 try {
                     UserManager.updateUser(user, sessionId);

@@ -6,6 +6,7 @@ package IStoreApp.ui;
 
 import IStoreApp.model.User;
 import IStoreApp.service.UserManager;
+import IStoreApp.service.PasswordManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -42,9 +43,6 @@ public class RegisterUI extends JFrame {
         panel.add(new JLabel("Confirmation du mot de passe :"));
         panel.add(confirmPasswordField);
 
-        panel.add(new JLabel("Rôle de l'utilisateur :"));
-        panel.add(roleField);
-
         // Bouton pour créer un compte
         JButton registerButton = new JButton("Créer un compte");
         registerButton.addActionListener(new ActionListener() {
@@ -53,7 +51,7 @@ public class RegisterUI extends JFrame {
                 String pseudo = pseudoField.getText();
                 String password = new String(passwordField.getPassword());
                 String confirmPassword = new String(confirmPasswordField.getPassword());
-                String role = roleField.getText();
+                String role = "user";
 
                 // Vérification si tous les champs sont remplis
                 if (email.isEmpty() || pseudo.isEmpty() || password.isEmpty() || role.isEmpty()) {
@@ -80,7 +78,9 @@ public class RegisterUI extends JFrame {
                 // Vérification si l'email est Whitelist
                 try {
                     if (isEmailWhitelisted(email)) {
-                        UserManager.createUser(new User(email, pseudo, password, role));
+                        // Hasher le mot de passe avant de l'enregistrer
+                        String hashedPassword = PasswordManager.hashPassword(password);
+                        UserManager.createUser(new User(email, pseudo, hashedPassword, role));
                         JOptionPane.showMessageDialog(RegisterUI.this, "Compte créé avec succès !");
                         dispose(); // Ferme la fenêtre
                     } else {

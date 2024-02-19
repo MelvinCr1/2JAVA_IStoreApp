@@ -10,6 +10,7 @@ import IStoreApp.dataAccess.WhitelistAccess;
 import IStoreApp.model.User;
 
 import java.sql.SQLException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class Authentication {
     public static boolean authenticate(String email, String password) {
@@ -18,7 +19,12 @@ public class Authentication {
             User user = UserAccess.getUserByEmail(email);
 
             // Vérifier si l'utilisateur existe et si le mot de passe correspond
-            return user != null && user.getPassword().equals(password);
+            if (user != null) {
+                // Vérifier le mot de passe avec BCrypt
+                return BCrypt.checkpw(password, user.getPassword());
+            } else {
+                return false;
+            }
         } catch (SQLException e) {
             // Gérer l'exception liée à l'accès à la base de données
             System.err.println("Erreur lors de l'authentification : " + e.getMessage());

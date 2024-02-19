@@ -1,7 +1,6 @@
 // Copyright (C) 2024 by CUREAU Melvin
 // Released under the terms of the Creative Commons Licence
 // --------------------
-// MySql database connection management file and main
 
 package IStoreApp;
 
@@ -25,8 +24,11 @@ public class Main {
             try (Connection connexion = DriverManager.getConnection(URL, UTILISATEUR, MOT_DE_PASSE)) {
                 return true;
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace(System.out);
+        } catch (ClassNotFoundException e) {
+            System.err.println("Erreur de chargement du pilote JDBC : " + e.getMessage());
+            return false;
+        } catch (SQLException e) {
+            System.err.println("Erreur de connexion à la base de données : " + e.getMessage());
             return false;
         }
     }
