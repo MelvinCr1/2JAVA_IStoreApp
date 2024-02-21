@@ -8,8 +8,6 @@ import IStoreApp.model.Item;
 import IStoreApp.dataAccess.ItemAccess;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ItemManager {
     private static final ItemAccess itemAccess;
@@ -36,6 +34,10 @@ public class ItemManager {
     public static Item getItemById(int itemId) throws SQLException {
         // Appeler la méthode d'accès aux données pour récupérer l'article par ID
         return itemAccess.getItemById(itemId);
+    }
+
+    public static Item getItemByStore(String name) throws SQLException {
+        return itemAccess.getItemByStore(name);
     }
 
     public static void updateItem(Item item) throws SQLException {

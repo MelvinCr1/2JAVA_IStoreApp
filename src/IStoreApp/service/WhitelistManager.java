@@ -19,4 +19,3 @@ public class WhitelistManager {
         IStoreApp.dataAccess.WhitelistAccess.removeFromWhitelist(email);
     }
 }
-

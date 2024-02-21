@@ -5,7 +5,9 @@
 package IStoreApp.ui;
 
 import IStoreApp.model.Item;
+import IStoreApp.model.User;
 import IStoreApp.service.ItemManager;
+import IStoreApp.service.UserManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -90,6 +92,37 @@ public class ItemUI extends JFrame {
             }
         });
         panel.add(createItemButton);
+
+        // Bouton pour afficher les détails d'un utilisateur
+        JButton displayUserButton = new JButton("Afficher les articles d'un magasin");
+        displayUserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Récupérer le nom du magasin depuis le champ de saisie
+                String store = storeField.getText();
+
+                try {
+                    // Récupérer l'utilisateur depuis la base de données en utilisant son email
+                    Item item = ItemManager.getItemByStore(store);
+
+                    // Vérifier si l'utilisateur existe
+                    if (store != null) {
+                        // Afficher les détails de l'utilisateur dans une boîte de dialogue
+                        JOptionPane.showMessageDialog(null, "Détails :\n" +
+                                "Id: " + item.getId() + "\n" +
+                                "Nom: " + item.getName() + "\n" +
+                                "Prix: " + item.getPrice() + "\n" +
+                                "Quantité: " + item.getQuantity());
+                    } else {
+                        // Afficher un message si l'utilisateur n'existe pas
+                        JOptionPane.showMessageDialog(null, "Le magasin " + store + " n'existe pas.");
+                    }
+                } catch (SQLException ex) {
+                    // Gérer les exceptions liées à l'accès à la base de données
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        panel.add(displayUserButton);
 
         // Bouton pour supprimer un article
 

@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import IStoreApp.Main;
 import IStoreApp.model.Item;
@@ -73,10 +72,10 @@ public class ItemAccess {
     }
 
     // Méthode pour récupérer un article par son identifiant
-    public Item getItemsByStore(int storeName) throws SQLException {
+    public Item getItemsByStore(String storeName) throws SQLException {
         String query = "SELECT * FROM items WHERE store = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, storeName);
+            statement.setInt(1, Integer.parseInt(storeName));
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     String name = resultSet.getString("name");
@@ -87,6 +86,23 @@ public class ItemAccess {
                 }
             }
         }
+        return null;
+    }
+
+    // Méthode pour récupérer un article par son magasin
+    public static Item getItemByStore(String store) throws SQLException {
+        Connection connection = Main.getConnection();
+        String query = "SELECT * FROM items WHERE store = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, store);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new Item(resultSet.getString("Magasin"), resultSet.getDouble("prix"), resultSet.getInt("quantité"), store);
+                }
+                connection.close();
+            }
+        }
+        connection.close();
         return null;
     }
 }
