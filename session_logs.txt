@@ -58,6 +58,23 @@
 2024-02-19 19:44:34 - Session ended - User: axel@admin.com, Session ID: f0e733a7-dbd0-4d72-92c3-2bdbfe27805f
 2024-02-19 19:44:40 - Session started - User: melvin@admin.com, Session ID: f07c840c-f381-4020-9a0e-a4898f002b96
 2024-02-19 19:45:00 - Session started - User: axel@admin.com, Session ID: 9233729c-1095-42be-a087-9fa31b262856
+<<<<<<< HEAD
 2024-02-19 22:18:14 - Session started - User: melvin@admin.com, Session ID: 00b1296f-0b7a-4581-a818-65335d41c855
 2024-02-19 22:19:22 - Session started - User: melvin@admin.com, Session ID: 64081b0e-8f4f-448d-962d-d70e422b4262
 2024-02-19 22:24:01 - Session started - User: melvin@admin.com, Session ID: 8024576e-316d-47d6-b025-f1677e052c75
+=======
+2024-02-20 14:17:23 - Session started - User: test@test.com, Session ID: d307cd3c-568a-4e32-884d-1ca62b0aa058
+2024-02-20 14:32:14 - Session started - User: test@test.com, Session ID: 9b402bb2-06ff-435b-8ad9-cea3bd08f1df
+2024-02-20 14:36:48 - Session started - User: test@test.com, Session ID: df8ae2d1-b0d2-4105-9ee0-a885508324c7
+2024-02-20 14:37:27 - Session started - User: test@test.com, Session ID: b50288c0-b841-4b9a-bea0-927908cbc628
+2024-02-20 14:38:17 - Session started - User: test@test.com, Session ID: b866bd31-089f-4a15-af25-c5567ff5a98e
+2024-02-20 14:43:53 - Test log message
+2024-02-20 14:48:49 - Session started - User: test@example.com, Session ID: a286ffa2-bab3-43c0-bb4c-0e255ddc9ed6
+2024-02-20 14:48:49 - Session ended - User: test@example.com, Session ID: a286ffa2-bab3-43c0-bb4c-0e255ddc9ed6
+2024-02-20 14:48:49 - Session started - User: test@example.com, Session ID: 0bd6a7ab-8f38-469e-8667-6fca4e838f9f
+2024-02-20 14:48:49 - Session started - User: test2@example.com, Session ID: af48f41a-7787-4562-aa12-b92f7d3cc5e1
+2024-02-20 14:48:49 - Session ended - User: test@example.com, Session ID: 0bd6a7ab-8f38-469e-8667-6fca4e838f9f
+2024-02-20 14:48:49 - Session started - User: test@example.com, Session ID: 9e59b437-cb2b-4417-9324-a4a8c263d6a1
+2024-02-20 14:48:49 - Session ended - User: test@example.com, Session ID: 9e59b437-cb2b-4417-9324-a4a8c263d6a1
+2024-02-20 14:48:49 - Session ended - User: null, Session ID: 9e59b437-cb2b-4417-9324-a4a8c263d6a1
+>>>>>>> 625b5f68139acdb473b5f446f7ed72f06ea8c0e2

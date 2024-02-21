@@ -1,9 +1,12 @@
+// Copyright (C) 2024 by CUREAU Melvin
+// Released under the terms of the Creative Commons Licence
+// --------------------
+
 package IStoreApp.service;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class PasswordManager {
-
     // Méthode pour hacher un mot de passe
     public static String hashPassword(String plainTextPassword) {
         return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());

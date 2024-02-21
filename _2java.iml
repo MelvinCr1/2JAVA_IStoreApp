@@ -12,5 +12,9 @@
     <orderEntry type="library" name="junit-4.12" level="project" />
     <orderEntry type="library" name="mysql-connector-j-8.1.0" level="project" />
     <orderEntry type="library" name="spring-security-crypto-5.2.0.RELEASE" level="project" />
+    <orderEntry type="library" name="byte-buddy-1.14.11" level="project" />
+    <orderEntry type="library" name="byte-buddy-agent-1.14.11" level="project" />
+    <orderEntry type="library" name="mockito-core-5.10.0" level="project" />
+    <orderEntry type="library" name="objenesis-3.3" level="project" />
   </component>
 </module>
